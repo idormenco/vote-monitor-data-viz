@@ -1,0 +1,100 @@
+[
+  {
+    "id": "2025-03-30-arm",
+    "title": "Գյումրի և Փարաքար համայնքների ընտրություններ",
+    "englishTitle": "Gyumri and Parakar Community Elections",
+    "startDate": "2025-03-30",
+    "country": "ARM"
+  },
+  {
+    "id": "2025-02-23-deu",
+    "title": "Bundestagswahl 2025",
+    "englishTitle": "German federal election 2025",
+    "startDate": "2025-02-23",
+    "country": "DEU"
+  },
+  {
+    "id": "2025-02-09-xkx",
+    "title": "Kosovan parliamentary election 2025",
+    "englishTitle": "Kosovan parliamentary election 2025",
+    "startDate": "2025-02-09",
+    "country": "XKX"
+  },
+  {
+    "id": "2024-12-08-rou",
+    "title": "Alegeri Prezidențiale Runda 2",
+    "englishTitle": "Presidential Election Round 2",
+    "startDate": "2024-12-08",
+    "country": "ROU"
+  },
+  {
+    "id": "2024-12-01-rou",
+    "title": "Alegeri Parlamentare",
+    "englishTitle": "Parliamentary elections",
+    "startDate": "2024-12-01",
+    "country": "ROU"
+  },
+  {
+    "id": "2024-11-24-rou",
+    "title": "Alegeri Prezidențiale Runda 1",
+    "englishTitle": "Presidential Election Round 1",
+    "startDate": "2024-11-24",
+    "country": "ROU"
+  },
+  {
+    "id": "2024-10-27-bgr",
+    "title": "Парламентарни избори в България  2024",
+    "englishTitle": "2024 Bulgarian Parliamentary Election",
+    "startDate": "2024-10-27",
+    "country": "BGR"
+  },
+  {
+    "id": "2024-10-26-geo",
+    "title": "საქართველოს საპარლამენტო არჩევნები 2024",
+    "englishTitle": "Georgian Parliamentary Elections 2024",
+    "startDate": "2024-10-26",
+    "country": "GEO"
+  },
+  {
+    "id": "2024-10-20-mda",
+    "title": "Alegeri prezidențiale în Republica Moldova 2024",
+    "englishTitle": "Moldovan presidential election 2024",
+    "startDate": "2024-10-20",
+    "country": "MDA"
+  },
+  {
+    "id": "2024-06-09-bgr",
+    "title": "Избори за ЕП и НС 2024",
+    "englishTitle": "European elections 2024",
+    "startDate": "2024-06-09",
+    "country": "BGR"
+  },
+  {
+    "id": "2024-06-09-pol",
+    "title": "Wybory europejskie 2024",
+    "englishTitle": "European elections 2024",
+    "startDate": "2024-06-09",
+    "country": "POL"
+  },
+  {
+    "id": "2024-06-09-rou",
+    "title": "Alegeri europene și locale 2024",
+    "englishTitle": "European and local elections 2024",
+    "startDate": "2024-06-09",
+    "country": "ROU"
+  },
+  {
+    "id": "2024-06-02-srb-bg",
+    "title": "Izbori za grad Beograd 2024",
+    "englishTitle": "Belgrade Elections Event 2024",
+    "startDate": "2024-06-02",
+    "country": "SRB"
+  },
+  {
+    "id": "2024-06-02-srb-sv",
+    "title": "Izbori za opštinu Svilajnac 2024",
+    "englishTitle": "Svilajnac Elections Event 2024",
+    "startDate": "2024-06-02",
+    "country": "SRB"
+  }
+]

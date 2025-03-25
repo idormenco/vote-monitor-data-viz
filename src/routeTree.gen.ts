@@ -11,13 +11,34 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
+import { Route as ElectionsIndexImport } from './routes/elections/index'
+import { Route as ElectionsIdImport } from './routes/elections/$id'
 
 // Create/Update Routes
+
+const AboutRoute = AboutImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ElectionsIndexRoute = ElectionsIndexImport.update({
+  id: '/elections/',
+  path: '/elections/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ElectionsIdRoute = ElectionsIdImport.update({
+  id: '/elections/$id',
+  path: '/elections/$id',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -32,6 +53,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutImport
+      parentRoute: typeof rootRoute
+    }
+    '/elections/$id': {
+      id: '/elections/$id'
+      path: '/elections/$id'
+      fullPath: '/elections/$id'
+      preLoaderRoute: typeof ElectionsIdImport
+      parentRoute: typeof rootRoute
+    }
+    '/elections/': {
+      id: '/elections/'
+      path: '/elections'
+      fullPath: '/elections'
+      preLoaderRoute: typeof ElectionsIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -39,32 +81,47 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/elections/$id': typeof ElectionsIdRoute
+  '/elections': typeof ElectionsIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/elections/$id': typeof ElectionsIdRoute
+  '/elections': typeof ElectionsIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/elections/$id': typeof ElectionsIdRoute
+  '/elections/': typeof ElectionsIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/about' | '/elections/$id' | '/elections'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/about' | '/elections/$id' | '/elections'
+  id: '__root__' | '/' | '/about' | '/elections/$id' | '/elections/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ElectionsIdRoute: typeof ElectionsIdRoute
+  ElectionsIndexRoute: typeof ElectionsIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ElectionsIdRoute: ElectionsIdRoute,
+  ElectionsIndexRoute: ElectionsIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -77,11 +134,23 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/"
+        "/",
+        "/about",
+        "/elections/$id",
+        "/elections/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/about": {
+      "filePath": "about.tsx"
+    },
+    "/elections/$id": {
+      "filePath": "elections/$id.tsx"
+    },
+    "/elections/": {
+      "filePath": "elections/index.tsx"
     }
   }
 }

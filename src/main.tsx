@@ -1,13 +1,17 @@
+import { TailwindIndicator } from "@/components/TailwindIndicator.tsx";
+import { ThemeProvider } from "@/components/ThemeProvider.tsx";
+import { Toaster } from "@/components/ui/sonner";
+import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { StrictMode } from "react";
 import ReactDOM from "react-dom/client";
-import { RouterProvider, createRouter } from "@tanstack/react-router";
-
 // Import the generated route tree
 import { routeTree } from "./routeTree.gen";
 
-import "./styles.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { TanStackQueryDevelopmentTools } from "./components/utils/development-tools/TanStackQueryDevelopmentTools.tsx";
+import { TanStackRouterDevelopmentTools } from "./components/utils/development-tools/TanStackRouterDevelopmentTools.tsx";
 import reportWebVitals from "./reportWebVitals.ts";
-
+import "./styles.css";
 // Create a new router instance
 const router = createRouter({
   routeTree,
@@ -25,13 +29,45 @@ declare module "@tanstack/react-router" {
   }
 }
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: Infinity,
+    },
+  },
+});
+
 // Render the app
 const rootElement = document.getElementById("app");
 if (rootElement && !rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement);
   root.render(
     <StrictMode>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+          enableColorScheme
+        >
+          <div vaul-drawer-wrapper="">
+            <div className="relative flex min-h-screen flex-col bg-background">
+              <RouterProvider router={router} />
+            </div>
+          </div>
+          <TailwindIndicator />
+          <Toaster />
+          <TanStackRouterDevelopmentTools
+            router={router}
+            position="bottom-left"
+          />
+          <TanStackQueryDevelopmentTools
+            client={queryClient}
+            position="right"
+          />
+        </ThemeProvider>
+      </QueryClientProvider>
     </StrictMode>
   );
 }

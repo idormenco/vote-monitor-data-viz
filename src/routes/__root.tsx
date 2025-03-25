@@ -1,17 +1,18 @@
 import { Outlet, createRootRoute } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
-import Header from "../components/Header";
-import { Toaster } from "@/components/ui/sonner";
+import { SiteHeader } from "@/components/SiteHeader";
 
 export const Route = createRootRoute({
   component: () => (
     <>
-      <Header />
-
-      <Outlet />
-      <Toaster />
-      <TanStackRouterDevtools />
+      <SiteHeader />
+      <div className="container-wrapper">
+        <div className="container py-6">
+          <section className="scroll-mt-20">
+            <Outlet />
+          </section>
+        </div>
+      </div>
     </>
   ),
 });
