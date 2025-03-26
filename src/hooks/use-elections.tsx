@@ -1,12 +1,12 @@
 import type { ElectionModel } from "@/common/types";
-import { useQuery, useSuspenseQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 export const useElections = <TResult = Array<ElectionModel>,>(
   select?: (elections: Array<ElectionModel>) => TResult
 ) => {
-  return useSuspenseQuery({
+  return useQuery({
     queryKey: ["elections"],
-
+    placeholderData: [],
     queryFn: async () => {
       const response = await fetch(`/elections.json`);
       return await response.json();

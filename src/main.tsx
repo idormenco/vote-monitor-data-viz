@@ -10,7 +10,6 @@ import { routeTree } from "./routeTree.gen";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TanStackQueryDevelopmentTools } from "./components/utils/development-tools/TanStackQueryDevelopmentTools.tsx";
 import { TanStackRouterDevelopmentTools } from "./components/utils/development-tools/TanStackRouterDevelopmentTools.tsx";
-import reportWebVitals from "./reportWebVitals.ts";
 import "./styles.css";
 // Create a new router instance
 const router = createRouter({
