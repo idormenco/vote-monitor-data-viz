@@ -1,8 +1,3 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useElections } from "@/hooks/use-elections";
-import { columns } from "./columns";
-import { DataTable } from "./data-table";
-import { GeoMercator } from "./world-map";
 import type { ElectionModel } from "@/common/types";
 import {
   Card,
@@ -11,7 +6,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useElections } from "@/hooks/use-elections";
 import { useMemo } from "react";
+import { columns } from "./columns";
+import { DataTable } from "./data-table";
+import { GeoMercator } from "./world-map";
 
 export default function ElectionsList() {
   const { isLoading, isError, data: elections } = useElections();
@@ -45,7 +45,7 @@ export default function ElectionsList() {
       {elections?.length ? (
         <Tabs defaultValue="world-map">
           <TabsList>
-            <TabsTrigger value="world-map">World map</TabsTrigger>
+            <TabsTrigger value="world-map">Vote Monitor on the map</TabsTrigger>
             <TabsTrigger value="data-table">Data </TabsTrigger>
           </TabsList>
           <TabsContent value="world-map">

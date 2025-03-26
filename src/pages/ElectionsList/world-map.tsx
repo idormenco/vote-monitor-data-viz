@@ -30,6 +30,12 @@ const world = topojson.feature(worldJson, worldJson.objects.countries) as {
   features: FeatureShape[];
 };
 
+// We hide Antarctica because there will not be validators there:
+const HIDDEN_REGIONS = ["Antarctica"];
+const filteredLand = world.features.filter(
+  (feature) => !HIDDEN_REGIONS.includes(feature.properties.name)
+);
+
 export interface GeoMercatorProps<T> {
   name: string;
   data: T[];
@@ -59,8 +65,8 @@ export const GeoMercator = <T,>({
         <Chart<T>
           name={name}
           data={data}
-          width={parent.width}
-          height={parent.height}
+          width={parent.width || 900}
+          height={parent.height || 600}
           margin={margin}
           yAccessor={yAccessor}
           xAccessor={xAccessor}
@@ -94,8 +100,8 @@ const Chart = <T,>({
   } = useTooltip<T>();
 
   const centerX = width / 2;
-  const centerY = height / 2;
-  const scale = Math.min(width, height) * 0.25;
+  const centerY = height * 0.7;
+  const scale = Math.min(width, height) * 0.5;
 
   const scaleColorRange = useMemo(
     () =>
@@ -188,7 +194,7 @@ const Chart = <T,>({
         rx={10}
       />
       <Mercator<FeatureShape>
-        data={world.features}
+        data={filteredLand}
         scale={zoom?.transformMatrix.scaleX || scale}
         translate={[
           zoom?.transformMatrix.translateX || centerX,
