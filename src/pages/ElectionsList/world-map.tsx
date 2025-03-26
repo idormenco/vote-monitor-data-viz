@@ -1,12 +1,20 @@
-import type { ElectionModel } from "@/common/types";
-import { useElections } from "@/hooks/use-elections";
-import { useTheme } from "next-themes";
-import { useParentSize } from "@visx/responsive";
-import { scaleQuantize } from "@visx/scale";
-import { Mercator, Graticule } from "@visx/geo";
 import * as topojson from "topojson-client";
+import { Graticule, Mercator } from "@visx/geo";
+import { scaleLinear } from "@visx/scale";
+import { ParentSize } from "@visx/responsive";
+
+import { useTooltip, Tooltip } from "@visx/tooltip";
+import { Zoom } from "@visx/zoom";
+import { useCallback, useMemo } from "react";
+import { localPoint } from "@visx/event";
+import { ZoomControls } from "./zoom";
+import {
+  getDefaultTooltipStyles,
+  type InnerChartProps,
+  type Margin,
+} from "./utils";
 import worldJson from "visionscarto-world-atlas/world/110m.json";
-import { useMemo } from "react";
+import { useTheme } from "next-themes";
 
 interface FeatureShape {
   type: "Feature";
@@ -15,36 +23,79 @@ interface FeatureShape {
   properties: { name: string; a3: string };
 }
 
-// @ts-expect-error
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 const world = topojson.feature(worldJson, worldJson.objects.countries) as {
   type: "FeatureCollection";
   features: FeatureShape[];
 };
 
-const WorldMap = () => {
-  const { resolvedTheme } = useTheme();
-  const { parentRef, width, height } = useParentSize({ debounceTime: 150 });
+export interface GeoMercatorProps<T> {
+  name: string;
+  data: T[];
+  margin?: Margin;
+  xAccessor: (d: T) => string;
+  yAccessor: (d: T) => number;
+  tooltipAccessor?: (d: T) => string;
+  showZoomControls?: boolean;
+  allowZoomAndDrag?: boolean;
+}
 
-  const backgroundColor = useMemo(
-    () => (resolvedTheme === "light" ? "#f9f7e8" : "#111111"),
-    [resolvedTheme]
+type InnerGeoMercator<T> = InnerChartProps & GeoMercatorProps<T>;
+const defaultMargin = { top: 0, right: 0, bottom: 0, left: 0 };
+export const GeoMercator = <T,>({
+  data,
+  yAccessor,
+  xAccessor,
+  name,
+  margin = defaultMargin,
+  tooltipAccessor,
+  showZoomControls = false,
+  allowZoomAndDrag = false,
+}: GeoMercatorProps<T>) => {
+  return (
+    <ParentSize>
+      {(parent) => (
+        <Chart<T>
+          name={name}
+          data={data}
+          width={parent.width}
+          height={parent.height}
+          margin={margin}
+          yAccessor={yAccessor}
+          xAccessor={xAccessor}
+          allowZoomAndDrag={allowZoomAndDrag}
+          showZoomControls={showZoomControls}
+          tooltipAccessor={tooltipAccessor}
+        />
+      )}
+    </ParentSize>
   );
+};
 
-  const { data: electionsByCountry } = useElections((elections) => {
-    const electionsByCountry = elections?.reduce(
-      (acc: Map<string, ElectionModel[]>, election) => {
-        const { country } = election;
-        if (!acc.has(country)) {
-          acc.set(country, []);
-        }
-        acc.get(country)!.push(election);
-        return acc;
-      },
-      new Map<string, ElectionModel[]>()
-    );
+const Chart = <T,>({
+  width,
+  height,
+  yAccessor,
+  xAccessor,
+  data,
+  tooltipAccessor,
+  name,
+  allowZoomAndDrag,
+  showZoomControls,
+}: InnerGeoMercator<T>) => {
+  const { resolvedTheme } = useTheme();
+  const {
+    hideTooltip,
+    showTooltip,
+    tooltipData,
+    tooltipLeft = 0,
+    tooltipTop = 0,
+  } = useTooltip<T>();
 
-    return electionsByCountry;
-  });
+  const centerX = width / 2;
+  const centerY = height / 2;
+  const scale = Math.min(width, height) * 0.25;
 
   const scaleColorRange = useMemo(
     () =>
@@ -72,71 +123,189 @@ const WorldMap = () => {
     [resolvedTheme]
   );
 
-  const color = useMemo(
+  const colorScale = useMemo(
     () =>
-      scaleQuantize({
+      scaleLinear({
         domain: [
-          0,
-          Math.max(
-            ...Array.from(electionsByCountry?.values() ?? []).map(
-              (e) => e.length
-            ),
-            0
-          ),
+          Math.min(...data.map((d) => yAccessor(d))),
+          Math.max(...data.map((d) => yAccessor(d))),
         ],
         range: scaleColorRange,
       }),
-    [electionsByCountry, scaleColorRange]
+    [scaleColorRange]
   );
 
-  const centerX = width / 2;
-  const centerY = height / 2;
-  const scale = (width / 630) * 100;
+  const handleTooltip = useCallback(
+    (
+      event:
+        | React.TouchEvent<SVGPathElement>
+        | React.MouseEvent<SVGPathElement>,
+      countryData: T | undefined
+    ) => {
+      const eventSvgCoords = localPoint(event);
 
-  return (
-    <div
-      ref={parentRef}
-      className="relative w-full h-[calc(100vh-200px)] bg-red-400"
+      console.log(eventSvgCoords);
+
+      showTooltip({
+        tooltipData: countryData,
+        tooltipLeft: eventSvgCoords?.x,
+        tooltipTop: eventSvgCoords ? eventSvgCoords.y - 38 : undefined,
+      });
+    },
+    [showTooltip]
+  );
+
+  const renderMap = (zoom?: {
+    containerRef: React.RefObject<SVGSVGElement>;
+    isDragging: boolean;
+    dragStart: any;
+    dragMove: any;
+    dragEnd: any;
+    transformMatrix: { scaleX: number; translateX: number; translateY: number };
+  }) => (
+    <svg
+      id={name}
+      name={name}
+      width={width}
+      height={height}
+      ref={zoom?.containerRef}
+      style={{
+        touchAction: "none",
+        cursor:
+          allowZoomAndDrag && zoom
+            ? zoom.isDragging
+              ? "grabbing"
+              : "grab"
+            : "default",
+      }}
     >
-      <svg width={width} height={height}>
+      <rect
+        x={0}
+        y={0}
+        width={width}
+        height={height}
+        fill={"#f9f9f9"}
+        rx={10}
+      />
+      <Mercator<FeatureShape>
+        data={world.features}
+        scale={zoom?.transformMatrix.scaleX || scale}
+        translate={[
+          zoom?.transformMatrix.translateX || centerX,
+          zoom?.transformMatrix.translateY || centerY,
+        ]}
+      >
+        {(mercator) => (
+          <g>
+            <Graticule
+              graticule={(g) => mercator.path(g) || ""}
+              stroke="rgba(33,33,33,0.05)"
+            />
+            {mercator.features.map(({ feature, path }, i) => {
+              const countryData = data.find((d) => {
+                return xAccessor(d) === feature.properties.a3;
+              });
+
+              const fillColor = countryData
+                ? colorScale(yAccessor(countryData))
+                : "#e9e9e9";
+
+              return (
+                <path
+                  key={`map-feature-${i}`}
+                  d={path || ""}
+                  stroke={"#353535"}
+                  strokeWidth={0.35}
+                  fill={fillColor}
+                  onMouseLeave={hideTooltip}
+                  onMouseMove={(e) => handleTooltip(e, countryData)}
+                  onTouchStart={(e) => handleTooltip(e, countryData)}
+                  onTouchMove={(e) => handleTooltip(e, countryData)}
+                />
+              );
+            })}
+          </g>
+        )}
+      </Mercator>
+      {allowZoomAndDrag && zoom && (
         <rect
           x={0}
           y={0}
           width={width}
           height={height}
-          fill={backgroundColor}
+          rx={14}
+          fill="transparent"
+          onTouchStart={zoom.dragStart}
+          onTouchMove={zoom.dragMove}
+          onTouchEnd={zoom.dragEnd}
+          onMouseDown={zoom.dragStart}
+          onMouseMove={zoom.dragMove}
+          onMouseUp={zoom.dragEnd}
+          onMouseLeave={() => {
+            if (zoom.isDragging) zoom.dragEnd();
+          }}
         />
-        <Mercator<FeatureShape>
-          data={world.features.filter((f) => f.id !== "010")}
-          scale={scale}
-          translate={[centerX, centerY + 50]}
-        >
-          {(mercator) => (
-            <g>
-              <Graticule
-                graticule={(g) => mercator.path(g) || ""}
-                stroke="rgba(33,33,33,0.05)"
-              />
-              {mercator.features.map(({ feature, path }, i) => (
-                <path
-                  key={`map-feature-${i}`}
-                  d={path || ""}
-                  fill={color(
-                    electionsByCountry?.get(feature.properties.a3)?.length ?? 0
-                  )}
-                  stroke={backgroundColor}
-                  strokeWidth={0.5}
-                  onClick={() => {
-                    console.log(feature);
-                  }}
-                />
-              ))}
-            </g>
+      )}
+    </svg>
+  );
+
+  return allowZoomAndDrag ? (
+    <Zoom<SVGSVGElement>
+      width={width}
+      height={height}
+      scaleXMin={100}
+      scaleXMax={1000}
+      scaleYMin={100}
+      scaleYMax={1000}
+      initialTransformMatrix={{
+        scaleX: scale,
+        scaleY: scale,
+        translateX: centerX,
+        translateY: centerY,
+        skewX: 0,
+        skewY: 0,
+      }}
+    >
+      {(zoom) => (
+        <div style={{ position: "relative" }}>
+          {renderMap(zoom)}
+          {showZoomControls && <ZoomControls zoom={zoom} />}
+          {tooltipData && (
+            <Tooltip
+              top={tooltipTop}
+              left={tooltipLeft}
+              style={{
+                ...getDefaultTooltipStyles(resolvedTheme),
+                textAlign: "center",
+                transform: "translate(-50%)",
+              }}
+            >
+              {tooltipAccessor
+                ? tooltipAccessor(tooltipData)
+                : `${xAccessor(tooltipData)}: ${yAccessor(tooltipData)}`}
+            </Tooltip>
           )}
-        </Mercator>
-      </svg>
+        </div>
+      )}
+    </Zoom>
+  ) : (
+    <div style={{ position: "relative" }}>
+      {renderMap()}
+      {tooltipData && (
+        <Tooltip
+          top={tooltipTop}
+          left={tooltipLeft}
+          style={{
+            ...getDefaultTooltipStyles(resolvedTheme),
+            textAlign: "center",
+            transform: "translate(-50%)",
+          }}
+        >
+          {tooltipAccessor
+            ? tooltipAccessor(tooltipData)
+            : `${xAccessor(tooltipData)}: ${yAccessor(tooltipData)}`}
+        </Tooltip>
+      )}
     </div>
   );
 };
-
-export default WorldMap;
