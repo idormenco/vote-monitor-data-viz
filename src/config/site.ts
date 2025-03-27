@@ -4,7 +4,7 @@ export const siteConfig = {
   ogImage: "TBD",
   description: "a really nice descripiton",
   links: {
-    github: "https://github.com/shadcn-ui/ui",
+    github: "https://github.com/idormenco/vote-monitor-data-viz",
   },
 };
 

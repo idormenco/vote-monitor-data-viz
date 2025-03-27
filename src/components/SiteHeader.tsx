@@ -1,5 +1,5 @@
 import { siteConfig } from "@/config/site";
-import { Icons } from "./icons";
+import { Icons } from "./Icons";
 import MainNav from "./MainNav";
 import { MobileNav } from "./MobileNav";
 import { Button } from "./ui/button";
