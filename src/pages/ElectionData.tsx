@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { useElectionById } from "@/hooks/use-elections";
+import { useElectionById } from "@/queries/use-elections";
 import { Route } from "@/routes/elections/$id";
 import { Calendar, Flag, Globe, Hash, Type } from "lucide-react";
 

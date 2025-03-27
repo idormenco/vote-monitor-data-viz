@@ -7,10 +7,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useElections } from "@/hooks/use-elections";
+import { useElections } from "@/queries/use-elections";
 import { useMemo } from "react";
 import { columns } from "./columns";
-import { GeoMercator } from "./MercatorMap";
+import { GeoMercator } from "../../components/MercatorMap";
 import { DataTable } from "@/components/ui/data-table";
 import { CountryElectionsViewSheet } from "./CountryElectionsSheet";
 import React from "react";
