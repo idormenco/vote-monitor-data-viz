@@ -18,7 +18,7 @@ export const useElections = <TResult = Array<ElectionModel>,>(
 export function useElectionById(electionId: string) {
   return useQuery({
     queryKey: ["elections", electionId],
-    queryFn: async (): Promise<Array<ElectionModel>> => {
+    queryFn: async (): Promise<ElectionModel> => {
       const response = await fetch(`/elections-data/${electionId}.json`);
       return await response.json();
     },

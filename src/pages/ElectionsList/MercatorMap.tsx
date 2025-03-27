@@ -1,27 +1,21 @@
-import * as topojson from "topojson-client";
 import { Graticule, Mercator } from "@visx/geo";
-import { scaleLinear } from "@visx/scale";
 import { ParentSize } from "@visx/responsive";
+import { scaleLinear } from "@visx/scale";
+import * as topojson from "topojson-client";
 
-import { useTooltip, Tooltip } from "@visx/tooltip";
-import { Zoom } from "@visx/zoom";
-import { useCallback, useMemo } from "react";
 import { localPoint } from "@visx/event";
-import { ZoomControls } from "./zoom";
+import { Tooltip, useTooltip } from "@visx/tooltip";
+import { Zoom } from "@visx/zoom";
+import { useTheme } from "next-themes";
+import { useCallback, useMemo, useState } from "react";
+import worldJson from "visionscarto-world-atlas/world/110m.json";
 import {
   getDefaultTooltipStyles,
   type InnerChartProps,
   type Margin,
 } from "./utils";
-import worldJson from "visionscarto-world-atlas/world/110m.json";
-import { useTheme } from "next-themes";
-
-interface FeatureShape {
-  type: "Feature";
-  id: string;
-  geometry: { coordinates: [number, number][][]; type: "Polygon" };
-  properties: { name: string; a3: string };
-}
+import { ZoomControls } from "./zoom";
+import type { FeatureShape } from "@/common/types";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -43,8 +37,7 @@ export interface GeoMercatorProps<T> {
   xAccessor: (d: T) => string;
   yAccessor: (d: T) => number;
   tooltipAccessor?: (d: T) => string;
-  showZoomControls?: boolean;
-  allowZoomAndDrag?: boolean;
+  onCountryClick?: (d: T) => void;
 }
 
 type InnerGeoMercator<T> = InnerChartProps & GeoMercatorProps<T>;
@@ -56,8 +49,7 @@ export const GeoMercator = <T,>({
   name,
   margin = defaultMargin,
   tooltipAccessor,
-  showZoomControls = false,
-  allowZoomAndDrag = false,
+  onCountryClick,
 }: GeoMercatorProps<T>) => {
   return (
     <ParentSize>
@@ -70,9 +62,8 @@ export const GeoMercator = <T,>({
           margin={margin}
           yAccessor={yAccessor}
           xAccessor={xAccessor}
-          allowZoomAndDrag={allowZoomAndDrag}
-          showZoomControls={showZoomControls}
           tooltipAccessor={tooltipAccessor}
+          onCountryClick={onCountryClick}
         />
       )}
     </ParentSize>
@@ -86,9 +77,8 @@ const Chart = <T,>({
   xAccessor,
   data,
   tooltipAccessor,
+  onCountryClick,
   name,
-  allowZoomAndDrag,
-  showZoomControls,
 }: InnerGeoMercator<T>) => {
   const { resolvedTheme } = useTheme();
   const {
@@ -98,6 +88,7 @@ const Chart = <T,>({
     tooltipLeft = 0,
     tooltipTop = 0,
   } = useTooltip<T>();
+  const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
 
   const centerX = width / 2;
   const centerY = height * 0.7;
@@ -150,8 +141,6 @@ const Chart = <T,>({
     ) => {
       const eventSvgCoords = localPoint(event);
 
-      console.log(eventSvgCoords);
-
       showTooltip({
         tooltipData: countryData,
         tooltipLeft: eventSvgCoords?.x,
@@ -161,7 +150,7 @@ const Chart = <T,>({
     [showTooltip]
   );
 
-  const renderMap = (zoom?: {
+  const renderMap = (zoom: {
     containerRef: React.RefObject<SVGSVGElement>;
     isDragging: boolean;
     dragStart: any;
@@ -177,12 +166,7 @@ const Chart = <T,>({
       ref={zoom?.containerRef}
       style={{
         touchAction: "none",
-        cursor:
-          allowZoomAndDrag && zoom
-            ? zoom.isDragging
-              ? "grabbing"
-              : "grab"
-            : "default",
+        // cursor: zoom.isDragging ? "grabbing" : "grab",
       }}
     >
       <rect
@@ -212,6 +196,8 @@ const Chart = <T,>({
                 return xAccessor(d) === feature.properties.a3;
               });
 
+              const isHovered = hoveredCountry === feature.properties.a3;
+
               const fillColor = countryData
                 ? colorScale(yAccessor(countryData))
                 : "#e9e9e9";
@@ -221,41 +207,36 @@ const Chart = <T,>({
                   key={`map-feature-${i}`}
                   d={path || ""}
                   stroke={"#353535"}
-                  strokeWidth={0.35}
+                  strokeWidth={isHovered ? 1 : 0.35}
+                  cursor={countryData ? "pointer" : "default"}
                   fill={fillColor}
-                  onMouseLeave={hideTooltip}
-                  onMouseMove={(e) => handleTooltip(e, countryData)}
-                  onTouchStart={(e) => handleTooltip(e, countryData)}
-                  onTouchMove={(e) => handleTooltip(e, countryData)}
+                  onMouseLeave={() => {
+                    hideTooltip();
+                    setHoveredCountry(null);
+                  }}
+                  onMouseMove={(e) => {
+                    handleTooltip(e, countryData);
+                    setHoveredCountry(feature.properties.a3);
+                  }}
+                  onTouchStart={(e) => {
+                    handleTooltip(e, countryData);
+                    setHoveredCountry(feature.properties.a3);
+                  }}
+                  onTouchMove={(e) => {
+                    handleTooltip(e, countryData);
+                    setHoveredCountry(feature.properties.a3);
+                  }}
+                  onClick={() => countryData && onCountryClick?.(countryData)}
                 />
               );
             })}
           </g>
         )}
       </Mercator>
-      {allowZoomAndDrag && zoom && (
-        <rect
-          x={0}
-          y={0}
-          width={width}
-          height={height}
-          rx={14}
-          fill="transparent"
-          onTouchStart={zoom.dragStart}
-          onTouchMove={zoom.dragMove}
-          onTouchEnd={zoom.dragEnd}
-          onMouseDown={zoom.dragStart}
-          onMouseMove={zoom.dragMove}
-          onMouseUp={zoom.dragEnd}
-          onMouseLeave={() => {
-            if (zoom.isDragging) zoom.dragEnd();
-          }}
-        />
-      )}
     </svg>
   );
 
-  return allowZoomAndDrag ? (
+  return (
     <Zoom<SVGSVGElement>
       width={width}
       height={height}
@@ -275,7 +256,7 @@ const Chart = <T,>({
       {(zoom) => (
         <div style={{ position: "relative" }}>
           {renderMap(zoom)}
-          {showZoomControls && <ZoomControls zoom={zoom} />}
+          <ZoomControls zoom={zoom} />
           {tooltipData && (
             <Tooltip
               top={tooltipTop}
@@ -294,24 +275,5 @@ const Chart = <T,>({
         </div>
       )}
     </Zoom>
-  ) : (
-    <div style={{ position: "relative" }}>
-      {renderMap()}
-      {tooltipData && (
-        <Tooltip
-          top={tooltipTop}
-          left={tooltipLeft}
-          style={{
-            ...getDefaultTooltipStyles(resolvedTheme),
-            textAlign: "center",
-            transform: "translate(-50%)",
-          }}
-        >
-          {tooltipAccessor
-            ? tooltipAccessor(tooltipData)
-            : `${xAccessor(tooltipData)}: ${yAccessor(tooltipData)}`}
-        </Tooltip>
-      )}
-    </div>
   );
 };

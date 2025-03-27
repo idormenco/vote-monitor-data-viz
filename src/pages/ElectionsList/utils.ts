@@ -1,3 +1,4 @@
+import type { ElectionModel } from "@/common/types";
 import { defaultStyles } from "@visx/tooltip";
 export interface ChartProps {
   /// Unique identifier for the chart
@@ -19,6 +20,11 @@ export interface Margin {
   right: number;
   bottom: number;
   left: number;
+}
+
+export interface CountryElections {
+  countryCode: string;
+  monitoredElections: ElectionModel[];
 }
 
 export const getDefaultTooltipStyles = (theme: string | undefined = "light") =>

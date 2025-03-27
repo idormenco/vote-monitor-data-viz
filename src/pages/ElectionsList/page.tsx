@@ -10,11 +10,18 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useElections } from "@/hooks/use-elections";
 import { useMemo } from "react";
 import { columns } from "./columns";
-import { DataTable } from "./data-table";
-import { GeoMercator } from "./world-map";
+import { GeoMercator } from "./MercatorMap";
+import { DataTable } from "@/components/ui/data-table";
+import { CountryElectionsViewSheet } from "./CountryElectionsSheet";
+import React from "react";
+import type { CountryElections } from "./utils";
 
 export default function ElectionsList() {
+  const [countryElectionsData, setCountryElectionsData] =
+    React.useState<CountryElections | null>(null);
+
   const { isLoading, isError, data: elections } = useElections();
+
   const electionsByCountry = useMemo(() => {
     const electionsByCountry = elections?.reduce(
       (acc: Map<string, ElectionModel[]>, election) => {
@@ -58,25 +65,19 @@ export default function ElectionsList() {
                   Deploy your new project in one-click.
                 </CardDescription>
               </CardHeader>
-              <CardContent className="fit-content">
+              <CardContent>
                 <div className="w-full h-[calc(100vh-300px)]">
                   <GeoMercator
                     data={electionsByCountry}
-                    xAccessor={(d: {
-                      countryCode: string;
-                      monitoredElections: ElectionModel[];
-                    }) => d.countryCode}
-                    yAccessor={(d: {
-                      countryCode: string;
-                      monitoredElections: ElectionModel[];
-                    }) => d.monitoredElections.length}
-                    tooltipAccessor={(d: {
-                      countryCode: string;
-                      monitoredElections: ElectionModel[];
-                    }) => `${d.countryCode}:${d.monitoredElections.length}`}
+                    xAccessor={(d: CountryElections) => d.countryCode}
+                    yAccessor={(d: CountryElections) =>
+                      d.monitoredElections.length
+                    }
+                    tooltipAccessor={(d: CountryElections) =>
+                      `${d.countryCode}:${d.monitoredElections.length}`
+                    }
+                    onCountryClick={setCountryElectionsData}
                     name="Elections across the world"
-                    showZoomControls={true}
-                    allowZoomAndDrag={true}
                   />
                 </div>
               </CardContent>
@@ -89,6 +90,11 @@ export default function ElectionsList() {
       ) : (
         <>no data!</>
       )}
+      <CountryElectionsViewSheet
+        open={countryElectionsData !== null}
+        onOpenChange={() => setCountryElectionsData(null)}
+        countryElections={countryElectionsData}
+      />
     </>
   );
 }

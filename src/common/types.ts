@@ -13,3 +13,10 @@ export interface ElectionDetailsModel {
   startDate: string;
   country: string;
 }
+
+export interface FeatureShape {
+  type: "Feature";
+  id: string;
+  geometry: { coordinates: [number, number][][]; type: "Polygon" };
+  properties: { name: string; a3: string };
+}

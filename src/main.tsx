@@ -11,6 +11,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TanStackQueryDevelopmentTools } from "./components/utils/development-tools/TanStackQueryDevelopmentTools.tsx";
 import { TanStackRouterDevelopmentTools } from "./components/utils/development-tools/TanStackRouterDevelopmentTools.tsx";
 import "./styles.css";
+import { TooltipProvider } from "./components/ui/tooltip.tsx";
 // Create a new router instance
 const router = createRouter({
   routeTree,
@@ -50,21 +51,23 @@ if (rootElement && !rootElement.innerHTML) {
           disableTransitionOnChange
           enableColorScheme
         >
-          <div vaul-drawer-wrapper="">
-            <div className="relative flex min-h-screen flex-col bg-background">
-              <RouterProvider router={router} />
+          <TooltipProvider>
+            <div vaul-drawer-wrapper="">
+              <div className="relative flex min-h-screen flex-col bg-background">
+                <RouterProvider router={router} />
+              </div>
             </div>
-          </div>
-          <TailwindIndicator />
-          <Toaster />
-          <TanStackRouterDevelopmentTools
-            router={router}
-            position="bottom-left"
-          />
-          <TanStackQueryDevelopmentTools
-            client={queryClient}
-            position="right"
-          />
+            <TailwindIndicator />
+            <Toaster />
+            <TanStackRouterDevelopmentTools
+              router={router}
+              position="bottom-left"
+            />
+            <TanStackQueryDevelopmentTools
+              client={queryClient}
+              position="right"
+            />
+          </TooltipProvider>
         </ThemeProvider>
       </QueryClientProvider>
     </StrictMode>
