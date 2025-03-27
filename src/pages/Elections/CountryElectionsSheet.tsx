@@ -10,6 +10,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -17,10 +18,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import type { CountryElections } from "./utils";
-import { Button } from "@/components/ui/button";
-import { Link } from "@tanstack/react-router";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { Link } from "@tanstack/react-router";
+import type { CountryElections } from "./utils";
 
 interface CountryElectionsViewSheetProps
   extends React.ComponentPropsWithRef<typeof Sheet> {
@@ -54,9 +54,10 @@ export function CountryElectionsViewSheet({
                   <CardDescription>{election.englishTitle}</CardDescription>
                 </CardHeader>
                 <CardContent>
+                  <div>{election.shortDescription}</div>
                   <Button type="button" variant={"link"}>
                     <Link to="/elections/$id" params={{ id: election.id }}>
-                      View details
+                      More details
                     </Link>
                   </Button>
                 </CardContent>

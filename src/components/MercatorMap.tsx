@@ -1,21 +1,22 @@
 import { Graticule, Mercator } from "@visx/geo";
 import { ParentSize } from "@visx/responsive";
-import { scaleLinear } from "@visx/scale";
 import * as topojson from "topojson-client";
 
+import type { FeatureShape } from "@/common/types";
+import { useMapColors } from "@/hooks/use-map-colors";
 import { localPoint } from "@visx/event";
 import { Tooltip, useTooltip } from "@visx/tooltip";
 import { Zoom } from "@visx/zoom";
 import { useTheme } from "next-themes";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import worldJson from "visionscarto-world-atlas/world/110m.json";
+
 import {
   getDefaultTooltipStyles,
   type InnerChartProps,
   type Margin,
 } from "../pages/Elections/utils";
 import { ZoomControls } from "../pages/Elections/zoom";
-import type { FeatureShape } from "@/common/types";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -93,44 +94,7 @@ const Chart = <T,>({
   const centerX = width / 2;
   const centerY = height * 0.7;
   const scale = Math.min(width, height) * 0.5;
-
-  const scaleColorRange = useMemo(
-    () =>
-      resolvedTheme === "light"
-        ? [
-            "#ffb01d",
-            "#ffa020",
-            "#ff9221",
-            "#ff8424",
-            "#ff7425",
-            "#fc5e2f",
-            "#f94b3a",
-            "#f63a48",
-          ]
-        : [
-            "#ffb01d",
-            "#ffa020",
-            "#ff9221",
-            "#ff8424",
-            "#ff7425",
-            "#fc5e2f",
-            "#f94b3a",
-            "#f63a48",
-          ],
-    [resolvedTheme]
-  );
-
-  const colorScale = useMemo(
-    () =>
-      scaleLinear({
-        domain: [
-          Math.min(...data.map((d) => yAccessor(d))),
-          Math.max(...data.map((d) => yAccessor(d))),
-        ],
-        range: scaleColorRange,
-      }),
-    [scaleColorRange]
-  );
+  const { worldMapColors } = useMapColors();
 
   const handleTooltip = useCallback(
     (
@@ -174,8 +138,7 @@ const Chart = <T,>({
         y={0}
         width={width}
         height={height}
-        fill={"#f9f9f9"}
-        rx={10}
+        fill={worldMapColors.waterColor}
       />
       <Mercator<FeatureShape>
         data={filteredLand}
@@ -189,7 +152,7 @@ const Chart = <T,>({
           <g>
             <Graticule
               graticule={(g) => mercator.path(g) || ""}
-              stroke="rgba(33,33,33,0.05)"
+              stroke={worldMapColors.landStrokeColor}
             />
             {mercator.features.map(({ feature, path }, i) => {
               const countryData = data.find((d) => {
@@ -199,15 +162,16 @@ const Chart = <T,>({
               const isHovered = hoveredCountry === feature.properties.a3;
 
               const fillColor = countryData
-                ? colorScale(yAccessor(countryData))
-                : "#e9e9e9";
+                ? isHovered
+                  ? worldMapColors.coveredCountryHooverColor
+                  : worldMapColors.coveredCountryColor
+                : worldMapColors.landColor;
 
               return (
                 <path
                   key={`map-feature-${i}`}
                   d={path || ""}
-                  stroke={"#353535"}
-                  strokeWidth={isHovered ? 1 : 0.35}
+                  stroke={worldMapColors.landStrokeColor}
                   cursor={countryData ? "pointer" : "default"}
                   fill={fillColor}
                   onMouseLeave={() => {

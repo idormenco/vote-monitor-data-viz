@@ -5,6 +5,7 @@ export interface ElectionModel {
   startDate: string;
   country: string;
   slug: string;
+  shortDescription: string;
 }
 
 export interface ElectionDetailsModel {
