@@ -14,7 +14,11 @@ import { GeoMercator } from "../../components/MercatorMap";
 import { DataTable } from "@/components/ui/data-table";
 import { CountryElectionsViewSheet } from "./CountryElectionsSheet";
 import React from "react";
-import type { CountryElections } from "./utils";
+
+export interface CountryElections {
+  countryCode: string;
+  monitoredElections: ElectionModel[];
+}
 
 export default function CountriesCoveredMap() {
   const [countryElectionsData, setCountryElectionsData] =

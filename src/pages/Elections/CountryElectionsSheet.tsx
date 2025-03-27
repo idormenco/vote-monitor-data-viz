@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Link } from "@tanstack/react-router";
-import type { CountryElections } from "./utils";
+import type { CountryElections } from "./CountriesCoveredMap";
 
 interface CountryElectionsViewSheetProps
   extends React.ComponentPropsWithRef<typeof Sheet> {

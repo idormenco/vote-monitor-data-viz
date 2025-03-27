@@ -7,16 +7,32 @@ import { useMapColors } from "@/hooks/use-map-colors";
 import { localPoint } from "@visx/event";
 import { Tooltip, useTooltip } from "@visx/tooltip";
 import { Zoom } from "@visx/zoom";
-import { useTheme } from "next-themes";
 import { useCallback, useState } from "react";
 import worldJson from "visionscarto-world-atlas/world/110m.json";
 
-import {
-  getDefaultTooltipStyles,
-  type InnerChartProps,
-  type Margin,
-} from "../pages/Elections/utils";
 import { ZoomControls } from "../pages/Elections/zoom";
+
+export interface ChartProps {
+  /// Unique identifier for the chart
+  name: string;
+  showGrid?: boolean;
+  axisXLabel?: string;
+  axisYLabel?: string;
+  showAxisX?: boolean;
+  showAxisY?: boolean;
+}
+
+export interface InnerChartProps extends ChartProps {
+  width: number;
+  height: number;
+}
+
+export interface Margin {
+  top: number;
+  right: number;
+  bottom: number;
+  left: number;
+}
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -81,7 +97,6 @@ const Chart = <T,>({
   onCountryClick,
   name,
 }: InnerGeoMercator<T>) => {
-  const { resolvedTheme } = useTheme();
   const {
     hideTooltip,
     showTooltip,
@@ -94,7 +109,7 @@ const Chart = <T,>({
   const centerX = width / 2;
   const centerY = height * 0.7;
   const scale = Math.min(width, height) * 0.5;
-  const { worldMapColors } = useMapColors();
+  const { worldMapColors, tooltipStyles } = useMapColors();
 
   const handleTooltip = useCallback(
     (
@@ -226,7 +241,7 @@ const Chart = <T,>({
               top={tooltipTop}
               left={tooltipLeft}
               style={{
-                ...getDefaultTooltipStyles(resolvedTheme),
+                ...tooltipStyles,
                 textAlign: "center",
                 transform: "translate(-50%)",
               }}

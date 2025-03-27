@@ -1,5 +1,6 @@
 import { useTheme } from "next-themes";
 import React from "react";
+import { defaultStyles } from "@visx/tooltip";
 
 export interface WorldMapConfig {
   landColor: string;
@@ -25,7 +26,12 @@ const darkThemeColors: WorldMapConfig = {
   coveredCountryHooverColor: "rgba(232, 201, 121, 1)",
 };
 
-export function useMapColors() {
+export interface MapColorsConfig {
+  worldMapColors: WorldMapConfig;
+  tooltipStyles: React.CSSProperties;
+}
+
+export function useMapColors(): MapColorsConfig {
   const { resolvedTheme } = useTheme();
 
   const worldMapColors = React.useMemo(() => {
@@ -38,7 +44,28 @@ export function useMapColors() {
         };
   }, [resolvedTheme]);
 
+  const tooltipStyles = React.useMemo(() => {
+    return resolvedTheme !== "dark"
+      ? {
+          ...defaultStyles,
+          background: "#f9f9f9",
+          border: `1px solid #353535`,
+          borderRadius: "0.25rem",
+          color: "#030303",
+          fontSize: "1.2rem",
+        }
+      : {
+          ...defaultStyles,
+          background: "#080808",
+          border: `1px solid #353535`,
+          borderRadius: "0.25rem",
+          color: "#c2c2c2",
+          fontSize: "1.2rem",
+        };
+  }, [resolvedTheme]);
+
   return {
     worldMapColors,
+    tooltipStyles,
   };
 }
