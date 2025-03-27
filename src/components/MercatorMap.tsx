@@ -13,8 +13,8 @@ import {
   getDefaultTooltipStyles,
   type InnerChartProps,
   type Margin,
-} from "../pages/ElectionsList/utils";
-import { ZoomControls } from "../pages/ElectionsList/zoom";
+} from "../pages/Elections/utils";
+import { ZoomControls } from "../pages/Elections/zoom";
 import type { FeatureShape } from "@/common/types";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment

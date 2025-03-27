@@ -16,7 +16,7 @@ import { CountryElectionsViewSheet } from "./CountryElectionsSheet";
 import React from "react";
 import type { CountryElections } from "./utils";
 
-export default function ElectionsList() {
+export default function CountriesCoveredMap() {
   const [countryElectionsData, setCountryElectionsData] =
     React.useState<CountryElections | null>(null);
 
