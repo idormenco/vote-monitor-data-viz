@@ -22,3 +22,7 @@ const world = topojson.feature(worldJson, worldJson.objects.countries) as {
   features: FeatureShape[];
 };
 ```
+
+## \<country-code>-adm-\<level>.json
+
+Data provided by [GADM License](https://gadm.org/license.html)

@@ -11,9 +11,30 @@ export interface ElectionModel {
 
 export interface ElectionDetailsModel {
   title: string;
-  englishTile: string;
+  englishTitle: string;
   startDate: string;
-  country: string;
+  countryCode: string;
+  countryShortName: string;
+  gid0Data: GIDData[];
+  gid1Data: GIDData[];
+  gid2Data: GIDData[];
+  gid3Data: GIDData[];
+  gid4Data: GIDData[];
+}
+
+export interface GIDData {
+  gid: string;
+  gidName: string;
+  numberOfPollingStations: number;
+  quickReportsSubmitted: number;
+  formSubmitted: number;
+  psiSubmitted: number;
+  numberOfQuestionsAnswered: number;
+  numberOfFlaggedAnswers: number;
+  observersWithForms: number;
+  observersWithQuickReports: number;
+  observersWithPSI: number;
+  totalObservers: number;
 }
 
 export interface FeatureShape {
