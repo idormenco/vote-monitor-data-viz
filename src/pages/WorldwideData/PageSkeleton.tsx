@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-export default function CountriesCoveredMapSkeleton() {
+export default function PageSkeleton() {
   return (
     <Tabs defaultValue="world-map">
       <TabsList>

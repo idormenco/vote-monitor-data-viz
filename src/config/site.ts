@@ -14,3 +14,6 @@ export const META_THEME_COLORS = {
   light: "#ffffff",
   dark: "#09090b",
 };
+
+// We hide Antarctica because there will not monitor there:
+export const HIDDEN_REGIONS = ["Antarctica"];

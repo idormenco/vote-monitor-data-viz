@@ -11,12 +11,19 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as TypographyImport } from './routes/typography'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
 import { Route as ElectionsIndexImport } from './routes/elections/index'
 import { Route as ElectionsIdImport } from './routes/elections/$id'
 
 // Create/Update Routes
+
+const TypographyRoute = TypographyImport.update({
+  id: '/typography',
+  path: '/typography',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const AboutRoute = AboutImport.update({
   id: '/about',
@@ -60,6 +67,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
+    '/typography': {
+      id: '/typography'
+      path: '/typography'
+      fullPath: '/typography'
+      preLoaderRoute: typeof TypographyImport
+      parentRoute: typeof rootRoute
+    }
     '/elections/$id': {
       id: '/elections/$id'
       path: '/elections/$id'
@@ -82,6 +96,7 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/typography': typeof TypographyRoute
   '/elections/$id': typeof ElectionsIdRoute
   '/elections': typeof ElectionsIndexRoute
 }
@@ -89,6 +104,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/typography': typeof TypographyRoute
   '/elections/$id': typeof ElectionsIdRoute
   '/elections': typeof ElectionsIndexRoute
 }
@@ -97,22 +113,30 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/typography': typeof TypographyRoute
   '/elections/$id': typeof ElectionsIdRoute
   '/elections/': typeof ElectionsIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/elections/$id' | '/elections'
+  fullPaths: '/' | '/about' | '/typography' | '/elections/$id' | '/elections'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/elections/$id' | '/elections'
-  id: '__root__' | '/' | '/about' | '/elections/$id' | '/elections/'
+  to: '/' | '/about' | '/typography' | '/elections/$id' | '/elections'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/typography'
+    | '/elections/$id'
+    | '/elections/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  TypographyRoute: typeof TypographyRoute
   ElectionsIdRoute: typeof ElectionsIdRoute
   ElectionsIndexRoute: typeof ElectionsIndexRoute
 }
@@ -120,6 +144,7 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  TypographyRoute: TypographyRoute,
   ElectionsIdRoute: ElectionsIdRoute,
   ElectionsIndexRoute: ElectionsIndexRoute,
 }
@@ -136,6 +161,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/about",
+        "/typography",
         "/elections/$id",
         "/elections/"
       ]
@@ -145,6 +171,9 @@ export const routeTree = rootRoute
     },
     "/about": {
       "filePath": "about.tsx"
+    },
+    "/typography": {
+      "filePath": "typography.tsx"
     },
     "/elections/$id": {
       "filePath": "elections/$id.tsx"

@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 
-export default function ElectionDataSkeleton() {
+export default function PageSkeleton() {
   return (
     <Card className="w-full max-w-md mx-auto">
       <CardHeader className="pb-2 border-b">

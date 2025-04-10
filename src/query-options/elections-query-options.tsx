@@ -1,4 +1,4 @@
-import type { ElectionModel } from "@/common/types";
+import type { ElectionDetailsModel, ElectionModel } from "@/common/types";
 import { queryOptions } from "@tanstack/react-query";
 
 export const electionsQueryOptions = queryOptions({
@@ -13,7 +13,7 @@ export const electionsQueryOptions = queryOptions({
 export const electionByIdQueryOptions = (electionId: string) =>
   queryOptions({
     queryKey: ["elections", electionId],
-    queryFn: async (): Promise<ElectionModel> => {
+    queryFn: async (): Promise<ElectionDetailsModel> => {
       const response = await fetch(`/elections-data/${electionId}.json`);
       return await response.json();
     },

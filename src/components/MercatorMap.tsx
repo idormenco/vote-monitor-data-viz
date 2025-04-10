@@ -7,8 +7,7 @@ import { localPoint } from "@visx/event";
 import { Tooltip, useTooltip } from "@visx/tooltip";
 import { Zoom } from "@visx/zoom";
 import { useCallback, useState } from "react";
-
-import { ZoomControls } from "../pages/Elections/ZoomControls";
+import { ZoomControls } from "./ZoomControls";
 
 export interface ChartProps {
   /// Unique identifier for the chart
@@ -37,10 +36,10 @@ export interface GeoMercatorProps<T> {
   name: string;
   data: T[];
   margin?: Margin;
-  xAccessor: (d: T) => string;
-  yAccessor: (d: T) => number;
-  tooltipAccessor?: (d: T) => string;
-  onCountryClick?: (d: T) => void;
+  xAccessor: (data: T) => string;
+  yAccessor: (data: T) => number;
+  tooltipAccessor?: (data: T) => string;
+  onFeatureClick?: (data: T) => void;
 }
 
 type InnerGeoMercator<T> = InnerChartProps & GeoMercatorProps<T>;
@@ -53,7 +52,7 @@ export const GeoMercator = <T,>({
   name,
   margin = defaultMargin,
   tooltipAccessor,
-  onCountryClick,
+  onFeatureClick,
 }: GeoMercatorProps<T>) => {
   return (
     <ParentSize>
@@ -68,7 +67,7 @@ export const GeoMercator = <T,>({
           yAccessor={yAccessor}
           xAccessor={xAccessor}
           tooltipAccessor={tooltipAccessor}
-          onCountryClick={onCountryClick}
+          onFeatureClick={onFeatureClick}
         />
       )}
     </ParentSize>
@@ -83,7 +82,7 @@ const Chart = <T,>({
   xAccessor,
   data,
   tooltipAccessor,
-  onCountryClick,
+  onFeatureClick,
   name,
 }: InnerGeoMercator<T>) => {
   const {
@@ -194,7 +193,7 @@ const Chart = <T,>({
                     handleTooltip(e, countryData);
                     setHoveredCountry(feature.properties.a3);
                   }}
-                  onClick={() => countryData && onCountryClick?.(countryData)}
+                  onClick={() => countryData && onFeatureClick?.(countryData)}
                 />
               );
             })}
