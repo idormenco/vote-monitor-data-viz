@@ -1,6 +1,5 @@
 import { Graticule, Mercator } from "@visx/geo";
 import { ParentSize } from "@visx/responsive";
-import * as topojson from "topojson-client";
 
 import type { FeatureShape } from "@/common/types";
 import { useMapColors } from "@/hooks/use-map-colors";
@@ -8,9 +7,8 @@ import { localPoint } from "@visx/event";
 import { Tooltip, useTooltip } from "@visx/tooltip";
 import { Zoom } from "@visx/zoom";
 import { useCallback, useState } from "react";
-import worldJson from "visionscarto-world-atlas/world/110m.json";
 
-import { ZoomControls } from "../pages/Elections/zoom";
+import { ZoomControls } from "../pages/Elections/ZoomControls";
 
 export interface ChartProps {
   /// Unique identifier for the chart
@@ -34,20 +32,8 @@ export interface Margin {
   left: number;
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore
-const world = topojson.feature(worldJson, worldJson.objects.countries) as {
-  type: "FeatureCollection";
-  features: FeatureShape[];
-};
-
-// We hide Antarctica because there will not be validators there:
-const HIDDEN_REGIONS = ["Antarctica"];
-const filteredLand = world.features.filter(
-  (feature) => !HIDDEN_REGIONS.includes(feature.properties.name)
-);
-
 export interface GeoMercatorProps<T> {
+  features: FeatureShape[];
   name: string;
   data: T[];
   margin?: Margin;
@@ -60,6 +46,7 @@ export interface GeoMercatorProps<T> {
 type InnerGeoMercator<T> = InnerChartProps & GeoMercatorProps<T>;
 const defaultMargin = { top: 0, right: 0, bottom: 0, left: 0 };
 export const GeoMercator = <T,>({
+  features,
   data,
   yAccessor,
   xAccessor,
@@ -72,6 +59,7 @@ export const GeoMercator = <T,>({
     <ParentSize>
       {(parent) => (
         <Chart<T>
+          features={features}
           name={name}
           data={data}
           width={parent.width || 900}
@@ -88,6 +76,7 @@ export const GeoMercator = <T,>({
 };
 
 const Chart = <T,>({
+  features,
   width,
   height,
   yAccessor,
@@ -156,7 +145,7 @@ const Chart = <T,>({
         fill={worldMapColors.waterColor}
       />
       <Mercator<FeatureShape>
-        data={filteredLand}
+        data={features}
         scale={zoom?.transformMatrix.scaleX || scale}
         translate={[
           zoom?.transformMatrix.translateX || centerX,

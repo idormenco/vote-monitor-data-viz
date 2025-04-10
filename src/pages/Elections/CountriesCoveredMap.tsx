@@ -6,34 +6,48 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useElections } from "@/queries/use-elections";
-import { useMemo } from "react";
-import { columns } from "./columns";
-import { GeoMercator } from "../../components/MercatorMap";
 import { DataTable } from "@/components/ui/data-table";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { electionsQueryOptions } from "@/query-options/elections-query-options";
+import { mapByCodeQueryOptions } from "@/query-options/maps-query-options";
+import { useSuspenseQueries } from "@tanstack/react-query";
+import React, { useMemo } from "react";
+import { GeoMercator } from "../../components/MercatorMap";
+import { columns } from "./columns";
 import { CountryElectionsViewSheet } from "./CountryElectionsSheet";
-import React from "react";
 
 export interface CountryElections {
   countryCode: string;
+  countryShortName: string;
   monitoredElections: ElectionModel[];
 }
 
 export default function CountriesCoveredMap() {
+  const [{ data: elections }, { data: world }] = useSuspenseQueries({
+    queries: [electionsQueryOptions, mapByCodeQueryOptions("world")],
+  });
+
+  // We hide Antarctica because there will not be validators there:
+  const HIDDEN_REGIONS = ["Antarctica"];
+  const filteredLand = useMemo(
+    () =>
+      world.features.filter(
+        (feature) => !HIDDEN_REGIONS.includes(feature.properties.name)
+      ),
+    [world]
+  );
+
   const [countryElectionsData, setCountryElectionsData] =
     React.useState<CountryElections | null>(null);
-
-  const { isLoading, isError, data: elections } = useElections();
 
   const electionsByCountry = useMemo(() => {
     const electionsByCountry = elections?.reduce(
       (acc: Map<string, ElectionModel[]>, election) => {
-        const { country } = election;
-        if (!acc.has(country)) {
-          acc.set(country, []);
+        const { countryCode } = election;
+        if (!acc.has(countryCode)) {
+          acc.set(countryCode, []);
         }
-        acc.get(country)!.push(election);
+        acc.get(countryCode)!.push(election);
         return acc;
       },
       new Map<string, ElectionModel[]>()
@@ -42,14 +56,12 @@ export default function CountriesCoveredMap() {
     const result = Array.from(electionsByCountry?.entries() ?? []).map(
       ([countryCode, monitoredElections]) => ({
         countryCode,
+        countryShortName: monitoredElections[0].countryShortName,
         monitoredElections,
       })
     );
     return result;
   }, [elections]);
-
-  if (isLoading) return <>loading</>;
-  if (isError) return <>error!</>;
 
   return (
     <>
@@ -72,13 +84,14 @@ export default function CountriesCoveredMap() {
               <CardContent>
                 <div className="w-full h-[calc(100vh-300px)]">
                   <GeoMercator
+                    features={filteredLand}
                     data={electionsByCountry}
                     xAccessor={(d: CountryElections) => d.countryCode}
                     yAccessor={(d: CountryElections) =>
                       d.monitoredElections.length
                     }
                     tooltipAccessor={(d: CountryElections) =>
-                      `${d.countryCode}:${d.monitoredElections.length}`
+                      `In ${d.countryShortName} we monitored ${d.monitoredElections.length} elections`
                     }
                     onCountryClick={setCountryElectionsData}
                     name="Elections across the world"

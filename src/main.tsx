@@ -30,7 +30,7 @@ declare module "@tanstack/react-router" {
   }
 }
 
-const queryClient = new QueryClient({
+export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       staleTime: Infinity,

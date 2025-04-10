@@ -3,7 +3,8 @@ export interface ElectionModel {
   title: string;
   englishTitle: string;
   startDate: string;
-  country: string;
+  countryCode: string;
+  countryShortName: string;
   slug: string;
   shortDescription: string;
 }
@@ -20,4 +21,9 @@ export interface FeatureShape {
   id: string;
   geometry: { coordinates: [number, number][][]; type: "Polygon" };
   properties: { name: string; a3: string };
+}
+
+export interface FeatureCollection {
+  type: "FeatureCollection";
+  features: FeatureShape[];
 }

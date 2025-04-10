@@ -4,7 +4,8 @@
     "title": "Գյումրի և Փարաքար համայնքների ընտրություններ",
     "englishTitle": "Gyumri and Parakar Community Elections",
     "startDate": "2025-03-30",
-    "country": "ARM",
+    "countryCode": "ARM",
+    "countryShortName": "Armenia",
     "shortDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vehicula, urna ut sodales tincidunt, turpis orci tincidunt lacus, nec dictum lorem justo at orci"
   },
   {
@@ -12,7 +13,8 @@
     "title": "Bundestagswahl 2025",
     "englishTitle": "German federal election 2025",
     "startDate": "2025-02-23",
-    "country": "DEU",
+    "countryCode": "DEU",
+    "countryShortName": "Germany",
     "shortDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi euismod orci non libero gravida, nec scelerisque erat dictum. Aenean vel orci sit amet dui ultrices sollicitudin"
   },
   {
@@ -20,7 +22,8 @@
     "title": "Kosovan parliamentary election 2025",
     "englishTitle": "Kosovan parliamentary election 2025",
     "startDate": "2025-02-09",
-    "country": "XKX",
+    "countryCode": "XKX",
+    "countryShortName": "Kosovo",
     "shortDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis gravida velit. Duis varius orci nec urna tempus, sit amet fermentum metus facilisis. Curabitur euismod"
   },
   {
@@ -28,7 +31,8 @@
     "title": "Alegeri Prezidențiale Runda 2",
     "englishTitle": "Presidential Election Round 2",
     "startDate": "2024-12-08",
-    "country": "ROU",
+    "countryCode": "ROU",
+    "countryShortName": "Romania",
     "shortDescription": "Curabitur vitae sapien vitae ligula elementum convallis non at erat. Integer non nulla eget sapien feugiat tincidunt"
   },
   {
@@ -36,7 +40,8 @@
     "title": "Alegeri Parlamentare",
     "englishTitle": "Parliamentary elections",
     "startDate": "2024-12-01",
-    "country": "ROU",
+    "countryCode": "ROU",
+    "countryShortName": "Romania",
     "shortDescription": "Integer non nulla eget sapien feugiat tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
   },
   {
@@ -44,7 +49,8 @@
     "title": "Alegeri Prezidențiale Runda 1",
     "englishTitle": "Presidential Election Round 1",
     "startDate": "2024-11-24",
-    "country": "ROU",
+    "countryCode": "ROU",
+    "countryShortName": "Romania",
     "shortDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae sapien vitae ligula elementum convallis non at erat"
   },
   {
@@ -52,7 +58,8 @@
     "title": "Парламентарни избори в България  2024",
     "englishTitle": "2024 Bulgarian Parliamentary Election",
     "startDate": "2024-10-27",
-    "country": "BGR",
+    "countryCode": "BGR",
+    "countryShortName": "Bulgaria",
     "shortDescription": "Curabitur vitae sapien vitae ligula elementum convallis non at erat. Integer non nulla eget sapien feugiat tincidunt."
   },
   {
@@ -60,7 +67,8 @@
     "title": "საქართველოს საპარლამენტო არჩევნები 2024",
     "englishTitle": "Georgian Parliamentary Elections 2024",
     "startDate": "2024-10-26",
-    "country": "GEO",
+    "countryCode": "GEO",
+    "countryShortName": "Georgia",
     "shortDescription": "Integer non nulla eget sapien feugiat tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit"
   },
   {
@@ -68,7 +76,8 @@
     "title": "Alegeri prezidențiale în Republica Moldova 2024",
     "englishTitle": "Moldovan presidential election 2024",
     "startDate": "2024-10-20",
-    "country": "MDA",
+    "countryCode": "MDA",
+    "countryShortName": "Moldova",
     "shortDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae sapien vitae ligula elementum convallis non at erat"
   },
   {
@@ -76,7 +85,8 @@
     "title": "Избори за ЕП и НС 2024",
     "englishTitle": "European elections 2024",
     "startDate": "2024-06-09",
-    "country": "BGR",
+    "countryCode": "BGR",
+    "countryShortName": "Bulgaria",
     "shortDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Donec vel sapien ut justo varius tincidunt. Curabitur auctor, metus ac facilisis."
   },
   {
@@ -84,7 +94,8 @@
     "title": "Wybory europejskie 2024",
     "englishTitle": "European elections 2024",
     "startDate": "2024-06-09",
-    "country": "POL",
+    "countryCode": "POL",
+    "countryShortName": "Poland",
     "shortDescription": "Curabitur vitae sapien vitae ligula elementum convallis non at erat. Integer non nulla eget sapien feugiat tincidunt"
   },
   {
@@ -92,7 +103,8 @@
     "title": "Alegeri europene și locale 2024",
     "englishTitle": "European and local elections 2024",
     "startDate": "2024-06-09",
-    "country": "ROU",
+    "countryCode": "ROU",
+    "countryShortName": "Romania",
     "shortDescription": "Integer non nulla eget sapien feugiat tincidunt. Lorem ipsum dolor sit amet, consectetur adipiscing elit"
   },
   {
@@ -100,7 +112,8 @@
     "title": "Izbori za grad Beograd 2024",
     "englishTitle": "Belgrade Elections Event 2024",
     "startDate": "2024-06-02",
-    "country": "SRB",
+    "countryCode": "SRB",
+    "countryShortName": "Serbia",
     "shortDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae sapien vitae ligula elementum convallis non at erat."
   },
   {
@@ -108,7 +121,8 @@
     "title": "Izbori za opštinu Svilajnac 2024",
     "englishTitle": "Svilajnac Elections Event 2024",
     "startDate": "2024-06-02",
-    "country": "SRB",
+    "countryCode": "SRB",
+    "countryShortName": "Serbia",
     "shortDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vitae sapien vitae ligula elementum convallis non at erat. Integer non nulla eget sapien feugiat tincidunt"
   }
 ]
