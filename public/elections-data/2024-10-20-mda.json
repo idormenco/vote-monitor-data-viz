@@ -17,7 +17,8 @@
             "observersWithForms": 55,
             "observersWithQuickReports": 0,
             "observersWithPSI": 50,
-            "totalObservers": 183
+            "activeObservers": 183,
+            "visitedPollingStations": 183
         }
     ],
     "gid1Data": [
@@ -33,7 +34,8 @@
             "observersWithForms": 5,
             "observersWithQuickReports": 0,
             "observersWithPSI": 5,
-            "totalObservers": 14
+            "activeObservers": 14,
+            "visitedPollingStations": 14
         },
         {
             "gid": "MDA.2_1",
@@ -47,7 +49,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.3_1",
@@ -61,7 +64,8 @@
             "observersWithForms": 1,
             "observersWithQuickReports": 0,
             "observersWithPSI": 1,
-            "totalObservers": 2
+            "activeObservers": 2,
+            "visitedPollingStations": 2
         },
         {
             "gid": "MDA.5_1",
@@ -75,7 +79,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.6_1",
@@ -89,7 +94,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.7_1",
@@ -103,7 +109,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.8_1",
@@ -117,7 +124,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.9_1",
@@ -131,7 +139,8 @@
             "observersWithForms": 1,
             "observersWithQuickReports": 0,
             "observersWithPSI": 1,
-            "totalObservers": 2
+            "activeObservers": 2,
+            "visitedPollingStations": 2
         },
         {
             "gid": "MDA.10_1",
@@ -145,7 +154,8 @@
             "observersWithForms": 17,
             "observersWithQuickReports": 0,
             "observersWithPSI": 15,
-            "totalObservers": 61
+            "activeObservers": 61,
+            "visitedPollingStations": 61
         },
         {
             "gid": "MDA.11_1",
@@ -159,7 +169,8 @@
             "observersWithForms": 1,
             "observersWithQuickReports": 0,
             "observersWithPSI": 1,
-            "totalObservers": 2
+            "activeObservers": 2,
+            "visitedPollingStations": 2
         },
         {
             "gid": "MDA.12_1",
@@ -173,7 +184,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.13_1",
@@ -187,7 +199,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.14_1",
@@ -201,7 +214,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.15_1",
@@ -215,7 +229,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.16_1",
@@ -229,7 +244,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.17_1",
@@ -243,7 +259,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.18_1",
@@ -257,7 +274,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.20_1",
@@ -271,7 +289,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.21_1",
@@ -285,7 +304,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.22_1",
@@ -299,7 +319,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.23_1",
@@ -313,7 +334,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.24_1",
@@ -327,7 +349,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.25_1",
@@ -341,7 +364,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.26_1",
@@ -355,7 +379,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.27_1",
@@ -369,7 +394,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.28_1",
@@ -383,7 +409,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.29_1",
@@ -397,7 +424,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.30_1",
@@ -411,7 +439,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.31_1",
@@ -425,7 +454,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.32_1",
@@ -439,7 +469,8 @@
             "observersWithForms": 1,
             "observersWithQuickReports": 0,
             "observersWithPSI": 1,
-            "totalObservers": 2
+            "activeObservers": 2,
+            "visitedPollingStations": 2
         },
         {
             "gid": "MDA.33_1",
@@ -453,7 +484,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.34_1",
@@ -467,7 +499,8 @@
             "observersWithForms": 3,
             "observersWithQuickReports": 0,
             "observersWithPSI": 3,
-            "totalObservers": 10
+            "activeObservers": 10,
+            "visitedPollingStations": 10
         },
         {
             "gid": "MDA.35_1",
@@ -481,7 +514,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.37_1",
@@ -495,7 +529,8 @@
             "observersWithForms": 0,
             "observersWithQuickReports": 0,
             "observersWithPSI": 0,
-            "totalObservers": 0
+            "activeObservers": 0,
+            "visitedPollingStations": 0
         },
         {
             "gid": "MDA.19_1",
@@ -509,7 +544,8 @@
             "observersWithForms": 26,
             "observersWithQuickReports": 0,
             "observersWithPSI": 23,
-            "totalObservers": 90
+            "activeObservers": 90,
+            "visitedPollingStations": 90
         }
     ],
     "gid2Data": [],
