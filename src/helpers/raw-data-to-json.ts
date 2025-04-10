@@ -37,7 +37,8 @@ interface RawElectionsDataRow {
   ObserversWithForms: number;
   ObserversWithQuickReports: number;
   ObserversWithPSI: number;
-  TotalObservers: number;
+  ActiveObservers: number;
+  VisitedPollingStations: number;
 }
 
 function groupAndSumByGid(
@@ -67,7 +68,8 @@ function groupAndSumByGid(
           observersWithForms: 0,
           observersWithQuickReports: 0,
           observersWithPSI: 0,
-          totalObservers: 0,
+          activeObservers: 0,
+          visitedPollingStations: 0,
         };
 
         acc[gid] = emptyGidData;
@@ -82,7 +84,8 @@ function groupAndSumByGid(
       acc[gid].observersWithForms += row.ObserversWithForms;
       acc[gid].observersWithQuickReports += row.ObserversWithQuickReports;
       acc[gid].observersWithPSI += row.ObserversWithPSI;
-      acc[gid].totalObservers += row.TotalObservers;
+      acc[gid].activeObservers += row.ActiveObservers;
+      acc[gid].visitedPollingStations += row.VisitedPollingStations;
 
       return acc;
     }, {} as Record<string, GIDData>)

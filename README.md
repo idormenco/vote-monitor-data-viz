@@ -17,7 +17,7 @@ To build this application for production:
 pnpm build
 ```
 
-# Getting data from DB
+# Getting raw data from DB
 
 ```sql
 select "Level1",
@@ -26,8 +26,8 @@ select "Level1",
        "Level4",
        "Level5",
        "Address",
-       trim(
-               concat_ws(' ',
+       TRIM(
+               CONCAT_WS(',',
                          NULLIF("Level1", ''),
                          NULLIF("Level2", ''),
                          NULLIF("Level3", ''),
@@ -36,24 +36,29 @@ select "Level1",
                          NULLIF("Address", '')
                )
        )                                                                        AS "FullAddress",
-       coalesce(count(distinct ps."Id"), 0)                                     as "NumberOfPollingStations",
-       coalesce(count(distinct qr."Id"), 0)                                     as "QuickReportsSubmitted",
-       coalesce(count(distinct fs."Id"), 0)                                     as "FormSubmitted",
-       coalesce(count(distinct psi."Id"), 0)                                    as "PSISubmitted",
-       coalesce(sum(fs."NumberOfQuestionsAnswered"), 0)                         as "NumberOfQuestionsAnswered",
-       coalesce(sum(fs."NumberOfFlaggedAnswers"), 0)                            as "NumberOfFlaggedAnswers",
-       coalesce(count(distinct fs."MonitoringObserverId"), 0)                   as "ObserversWithForms",
-       coalesce(count(distinct qr."MonitoringObserverId"), 0)                   as "ObserversWithQuickReports",
-       coalesce(count(distinct psi."MonitoringObserverId"), 0)                  as "ObserversWithPSI",
-       (select count(*)
-        from unnest(array_remove(array_agg(fs."MonitoringObserverId") ||
-                                 array_agg(qr."MonitoringObserverId") ||
-                                 array_agg(psi."MonitoringObserverId"), NULL))) as "TotalObservers"
+       COALESCE(COUNT(DISTINCT ps."Id"), 0)                                     AS "NumberOfPollingStations",
+       COALESCE(COUNT(DISTINCT qr."Id"), 0)                                     AS "QuickReportsSubmitted",
+       COALESCE(COUNT(DISTINCT fs."Id"), 0)                                     AS "FormSubmitted",
+       COALESCE(COUNT(DISTINCT psi."Id"), 0)                                    AS "PSISubmitted",
+       COALESCE(SUM(fs."NumberOfQuestionsAnswered"), 0)                         AS "NumberOfQuestionsAnswered",
+       COALESCE(SUM(fs."NumberOfFlaggedAnswers"), 0)                            AS "NumberOfFlaggedAnswers",
+       COALESCE(COUNT(DISTINCT fs."MonitoringObserverId"), 0)                   AS "ObserversWithForms",
+       COALESCE(COUNT(DISTINCT qr."MonitoringObserverId"), 0)                   AS "ObserversWithQuickReports",
+       COALESCE(COUNT(DISTINCT psi."MonitoringObserverId"), 0)                  AS "ObserversWithPSI",
+       (SELECT COUNT(*)
+        FROM UNNEST(ARRAY_REMOVE(ARRAY_AGG(fs."MonitoringObserverId") ||
+                                 ARRAY_AGG(qr."MonitoringObserverId") ||
+                                 ARRAY_AGG(psi."MonitoringObserverId"), NULL))) AS "ActiveObservers",
 
-from "PollingStations" ps
-         left join "FormSubmissions" fs on fs."PollingStationId" = ps."Id"
-         left join "QuickReports" qr on qr."PollingStationId" = ps."Id"
-         left join "PollingStationInformation" psi on psi."PollingStationId" = ps."Id"
-where ps."ElectionRoundId" = '9e68d49a-4466-418d-bfad-bc1099db9778'
-group by "Level1", "Level2", "Level3", "Level4", "Level5", "Address"
+       (SELECT COUNT(*)
+        FROM UNNEST(ARRAY_REMOVE(ARRAY_AGG(fs."PollingStationId") ||
+                                 ARRAY_AGG(qr."PollingStationId") ||
+                                 ARRAY_AGG(psi."PollingStationId"), NULL))) AS "VisitedPollingStations"
+
+FROM "PollingStations" ps
+         LEFT JOIN "FormSubmissions" fs ON fs."PollingStationId" = ps."Id"
+         LEFT JOIN "QuickReports" qr ON qr."PollingStationId" = ps."Id"
+         LEFT JOIN "PollingStationInformation" psi ON psi."PollingStationId" = ps."Id"
+WHERE ps."ElectionRoundId" = '9e68d49a-4466-418d-bfad-bc1099db9778'
+GROUP BY "Level1", "Level2", "Level3", "Level4", "Level5", "Address"
 ```

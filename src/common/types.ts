@@ -34,7 +34,8 @@ export interface GIDData {
   observersWithForms: number;
   observersWithQuickReports: number;
   observersWithPSI: number;
-  totalObservers: number;
+  activeObservers: number;
+  visitedPollingStations: number;
 }
 
 export interface FeatureShape {

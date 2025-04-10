@@ -38,6 +38,7 @@ export interface GeoMercatorProps<T> {
   margin?: Margin;
   xAccessor: (data: T) => string;
   yAccessor: (data: T) => number;
+  getFeatureFillColor: (data: T | undefined, isHovered: boolean) => string;
   tooltipAccessor?: (data: T) => string;
   onFeatureClick?: (data: T) => void;
 }
@@ -53,6 +54,7 @@ export const GeoMercator = <T,>({
   margin = defaultMargin,
   tooltipAccessor,
   onFeatureClick,
+  getFeatureFillColor,
 }: GeoMercatorProps<T>) => {
   return (
     <ParentSize>
@@ -67,6 +69,7 @@ export const GeoMercator = <T,>({
           yAccessor={yAccessor}
           xAccessor={xAccessor}
           tooltipAccessor={tooltipAccessor}
+          getFeatureFillColor={getFeatureFillColor}
           onFeatureClick={onFeatureClick}
         />
       )}
@@ -84,6 +87,7 @@ const Chart = <T,>({
   tooltipAccessor,
   onFeatureClick,
   name,
+  getFeatureFillColor,
 }: InnerGeoMercator<T>) => {
   const {
     hideTooltip,
@@ -123,7 +127,11 @@ const Chart = <T,>({
     dragStart: any;
     dragMove: any;
     dragEnd: any;
-    transformMatrix: { scaleX: number; translateX: number; translateY: number };
+    transformMatrix: {
+      scaleX: number;
+      translateX: number;
+      translateY: number;
+    };
   }) => (
     <svg
       id={name}
@@ -158,42 +166,36 @@ const Chart = <T,>({
               stroke={worldMapColors.landStrokeColor}
             />
             {mercator.features.map(({ feature, path }, i) => {
-              const countryData = data.find((d) => {
+              const featureData = data.find((d) => {
                 return xAccessor(d) === feature.properties.a3;
               });
 
               const isHovered = hoveredCountry === feature.properties.a3;
-
-              const fillColor = countryData
-                ? isHovered
-                  ? worldMapColors.coveredCountryHooverColor
-                  : worldMapColors.coveredCountryColor
-                : worldMapColors.landColor;
 
               return (
                 <path
                   key={`map-feature-${i}`}
                   d={path || ""}
                   stroke={worldMapColors.landStrokeColor}
-                  cursor={countryData ? "pointer" : "default"}
-                  fill={fillColor}
+                  cursor={featureData ? "pointer" : "default"}
+                  fill={getFeatureFillColor(featureData, isHovered)}
                   onMouseLeave={() => {
                     hideTooltip();
                     setHoveredCountry(null);
                   }}
                   onMouseMove={(e) => {
-                    handleTooltip(e, countryData);
+                    handleTooltip(e, featureData);
                     setHoveredCountry(feature.properties.a3);
                   }}
                   onTouchStart={(e) => {
-                    handleTooltip(e, countryData);
+                    handleTooltip(e, featureData);
                     setHoveredCountry(feature.properties.a3);
                   }}
                   onTouchMove={(e) => {
-                    handleTooltip(e, countryData);
+                    handleTooltip(e, featureData);
                     setHoveredCountry(feature.properties.a3);
                   }}
-                  onClick={() => countryData && onFeatureClick?.(countryData)}
+                  onClick={() => featureData && onFeatureClick?.(featureData)}
                 />
               );
             })}

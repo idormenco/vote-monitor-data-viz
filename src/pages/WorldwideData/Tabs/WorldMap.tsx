@@ -1,6 +1,7 @@
 import type { ElectionModel } from "@/common/types";
 import { GeoMercator } from "@/components/MercatorMap";
 import { HIDDEN_REGIONS } from "@/config/site";
+import { useMapColors } from "@/hooks/use-map-colors";
 import { electionsQueryOptions } from "@/query-options/elections-query-options";
 import { mapByCodeQueryOptions } from "@/query-options/maps-query-options";
 import { useSuspenseQueries } from "@tanstack/react-query";
@@ -28,6 +29,7 @@ function WorldMap({ onCountryClick }: WorldMapProps) {
       ),
     [world]
   );
+  const { worldMapColors, tooltipStyles } = useMapColors();
 
   const electionsByCountry = useMemo(() => {
     const electionsByCountry = elections?.reduce(
@@ -52,6 +54,19 @@ function WorldMap({ onCountryClick }: WorldMapProps) {
     return result;
   }, [elections]);
 
+  function getFeatureFillColor(
+    data: CountryElections | undefined,
+    isHovered: boolean
+  ): string {
+    const fillColor = data
+      ? isHovered
+        ? worldMapColors.coveredCountryHooverColor
+        : worldMapColors.coveredCountryColor
+      : worldMapColors.landColor;
+
+    return fillColor;
+  }
+
   return (
     <div className="w-full h-[calc(100vh-300px)]">
       <h2 className="mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
@@ -63,6 +78,7 @@ function WorldMap({ onCountryClick }: WorldMapProps) {
         data={electionsByCountry}
         xAccessor={(d: CountryElections) => d.countryCode}
         yAccessor={(d: CountryElections) => d.monitoredElections.length}
+        getFeatureFillColor={getFeatureFillColor}
         tooltipAccessor={(d: CountryElections) =>
           `In ${d.countryShortName} we monitored ${d.monitoredElections.length} elections`
         }
