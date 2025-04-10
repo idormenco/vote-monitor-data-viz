@@ -15,6 +15,7 @@ export interface ElectionDetailsModel {
   startDate: string;
   countryCode: string;
   countryShortName: string;
+  gid0Code: string;
   gid0Data: GIDData[];
   gid1Data: GIDData[];
   gid2Data: GIDData[];

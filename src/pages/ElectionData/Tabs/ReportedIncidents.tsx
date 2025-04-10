@@ -1,9 +1,9 @@
 import type { GIDData } from "@/common/types";
 export interface ReportedIncidentsProps {
-  gid0Data: GIDData[];
+  totals: GIDData;
   gidData: GIDData[];
 }
-function ReportedIncidents({}: ReportedIncidentsProps) {
+function ReportedIncidents({ totals, gidData }: ReportedIncidentsProps) {
   return <div>ReportedIncidents</div>;
 }
 

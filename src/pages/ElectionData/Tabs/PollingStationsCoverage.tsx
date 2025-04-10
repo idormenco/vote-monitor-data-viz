@@ -1,27 +1,22 @@
 import type { FeatureCollection, GIDData } from "@/common/types";
 
 import { GeoMercator } from "@/components/MercatorMap";
-import { useMapColors } from "@/hooks/use-map-colors";
-import { scaleQuantize } from "@visx/scale";
 import { interpolateCividis } from "d3-scale-chromatic";
 
 interface PollingStationsCoverageProps {
   mapFeatures: FeatureCollection;
-  gid0Data: GIDData;
+  totals: GIDData;
   gidData: GIDData[];
 }
 
 function PollingStationsCoverage({
   mapFeatures,
-  gid0Data,
+  totals,
   gidData,
 }: PollingStationsCoverageProps) {
-  function getFeatureFillColor(
-    data: GIDData | undefined,
-    isHovered: boolean
-  ): string {
+  function getFeatureFillColor(data: GIDData | undefined, _: boolean): string {
     return interpolateCividis(
-      data?.numberOfPollingStations ?? 0 / gid0Data.numberOfPollingStations
+      data?.visitedPollingStations ?? 0 / totals.numberOfPollingStations
     );
   }
 

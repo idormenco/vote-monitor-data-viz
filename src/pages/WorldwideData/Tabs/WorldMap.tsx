@@ -29,7 +29,7 @@ function WorldMap({ onCountryClick }: WorldMapProps) {
       ),
     [world]
   );
-  const { worldMapColors, tooltipStyles } = useMapColors();
+  const { worldMapColors } = useMapColors();
 
   const electionsByCountry = useMemo(() => {
     const electionsByCountry = elections?.reduce(

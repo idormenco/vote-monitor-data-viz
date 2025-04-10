@@ -10,6 +10,7 @@ import { existsSync } from "node:fs";
 import elections from "public/elections-data/all.json";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
+import { error } from "node:console";
 
 interface RawElectionsDataRow {
   Level1: string;
@@ -104,6 +105,12 @@ async function transformData() {
       describe: "Election id",
       type: "string",
       demandOption: true,
+    })
+    .option("c", {
+      alias: "gid0Code",
+      describe: "Gid 0 code",
+      type: "string",
+      demandOption: true,
     }).argv;
 
   const end = Date.now();
@@ -161,12 +168,17 @@ async function transformData() {
     (row) => row.GID_4_NAME
   );
 
+  if (!results.data.some((row) => row.GID_0 === options.c)) {
+    throw new Error(`GID0 ${options.c} not found in data set!`);
+  }
+
   const electionData: ElectionDetailsModel = {
     countryCode: election.countryCode,
     countryShortName: election.countryShortName,
     englishTitle: election.englishTitle,
     startDate: election.startDate,
     title: election.title,
+    gid0Code: options.c,
     gid0Data,
     gid1Data,
     gid2Data,

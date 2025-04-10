@@ -1,9 +1,10 @@
 import type { GIDData } from "@/common/types";
 export interface FormSubmissionsProps {
-  gid0Data: GIDData[];
+  totals: GIDData;
+
   gidData: GIDData[];
 }
-function FormSubmissions({}: FormSubmissionsProps) {
+function FormSubmissions({ totals, gidData }: FormSubmissionsProps) {
   return <div className="h-full">FormSubmissions</div>;
 }
 
