@@ -21,7 +21,7 @@ const lightThemeColors: WorldMapConfig = {
 const darkThemeColors: WorldMapConfig = {
   landColor: "rgba(51, 51, 51, 1)",
   landStrokeColor: "rgba(43, 43, 43, 1)",
-  waterColor: "rgba(43, 43, 43, 1)",
+  waterColor: "rgba(60, 60, 60, 1)",
   coveredCountryColor: "rgba(244, 227, 178, 1)",
   coveredCountryHooverColor: "rgba(232, 201, 121, 1)",
 };

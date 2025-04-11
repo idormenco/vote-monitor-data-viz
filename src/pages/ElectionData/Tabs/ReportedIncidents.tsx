@@ -36,11 +36,7 @@ function ReportedIncidents({
 
     if (min === max) {
       // return base color
-      return scaleLinear({
-        domain: [min, max],
-        range: ["#4b0091", "#4b0091"],
-        clamp: true,
-      });
+      return undefined;
     }
 
     return scaleLinear({
@@ -51,7 +47,7 @@ function ReportedIncidents({
   }, [gidData]);
 
   function getFeatureFillColor(data: GIDData | undefined, _: boolean): string {
-    return scale(getQuickReportsPercentage(data));
+    return scale?.(getQuickReportsPercentage(data)) || "#4b0091";
   }
 
   return (
@@ -67,33 +63,35 @@ function ReportedIncidents({
         }
         name="quick reports"
       >
-        <div className="absolute bottom-8 left-12 flex flex-col gap-y-1">
-          <LegendLinear
-            scale={scale}
-            labelFormat={(d, i) =>
-              i % 2 === 0 ? `${twoDecimalFormat(d)} %` : ""
-            }
-            className="absolute bottom-1"
-          >
-            {(labels) =>
-              labels.map((label, i) => (
-                <LegendItem key={`legend-quantile-${i}`}>
-                  <svg width={15} height={15} style={{ margin: "2px 0" }}>
-                    <circle
-                      fill={label.value}
-                      r={15 / 2}
-                      cx={15 / 2}
-                      cy={15 / 2}
-                    />
-                  </svg>
-                  <LegendLabel align="left" margin="0 4px">
-                    {label.text}
-                  </LegendLabel>
-                </LegendItem>
-              ))
-            }
-          </LegendLinear>
-        </div>
+        {scale && (
+          <div className="absolute bottom-8 left-12 flex flex-col gap-y-1">
+            <LegendLinear
+              scale={scale}
+              labelFormat={(d, i) =>
+                i % 2 === 0 ? `${twoDecimalFormat(d)} %` : ""
+              }
+              className="absolute bottom-1"
+            >
+              {(labels) =>
+                labels.map((label, i) => (
+                  <LegendItem key={`legend-quantile-${i}`}>
+                    <svg width={15} height={15} style={{ margin: "2px 0" }}>
+                      <circle
+                        fill={label.value}
+                        r={15 / 2}
+                        cx={15 / 2}
+                        cy={15 / 2}
+                      />
+                    </svg>
+                    <LegendLabel align="left" margin="0 4px">
+                      {label.text}
+                    </LegendLabel>
+                  </LegendItem>
+                ))
+              }
+            </LegendLinear>
+          </div>
+        )}
       </GeoMercator>
     </div>
   );

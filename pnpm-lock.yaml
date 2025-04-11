@@ -98,6 +98,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      d3-geo:
+        specifier: ^3.1.1
+        version: 3.1.1
       jotai:
         specifier: ^2.12.2
         version: 2.12.2(@types/react@19.0.12)(react@19.0.0)
@@ -150,6 +153,9 @@ importers:
       '@testing-library/react':
         specifier: ^16.2.0
         version: 16.2.0(@testing-library/dom@10.4.0)(@types/react-dom@19.0.4(@types/react@19.0.12))(@types/react@19.0.12)(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      '@types/d3-geo':
+        specifier: ^3.1.0
+        version: 3.1.0
       '@types/node':
         specifier: ^22.14.0
         version: 22.14.0
@@ -1579,6 +1585,10 @@ packages:
 
   d3-geo@3.1.0:
     resolution: {integrity: sha512-JEo5HxXDdDYXCaWdwLRt79y7giK8SbhZJbFWXqbRTolCHFI5jRqteLzCsq51NKbUoX0PjBVSohxrx+NoOUujYA==}
+    engines: {node: '>=12'}
+
+  d3-geo@3.1.1:
+    resolution: {integrity: sha512-637ln3gXKXOwhalDzinUgY83KzNWZRKbYubaG+fGVuc/dxO64RRljtCTnf5ecMyE1RIdtqpkVcq0IbtU2S8j2Q==}
     engines: {node: '>=12'}
 
   d3-interpolate@3.0.1:
@@ -3810,6 +3820,10 @@ snapshots:
   d3-format@3.1.0: {}
 
   d3-geo@3.1.0:
+    dependencies:
+      d3-array: 3.2.4
+
+  d3-geo@3.1.1:
     dependencies:
       d3-array: 3.2.4
 
