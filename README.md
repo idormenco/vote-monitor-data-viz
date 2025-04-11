@@ -26,6 +26,16 @@ select "Level1",
        "Level4",
        "Level5",
        "Address",
+       "Tags"->>'GID_0' as "GID_0",
+       "Tags"->>'GID_0_NAME' as "GID_0_NAME",
+       "Tags"->>'GID_1' as "GID_1",
+       "Tags"->>'GID_1_NAME' as "GID_1_NAME",
+       "Tags"->>'GID_2' as "GID_2",
+       "Tags"->>'GID_2_NAME' as "GID_2_NAME",
+       "Tags"->>'GID_3' as "GID_3",
+       "Tags"->>'GID_3_NAME' as "GID_3_NAME",
+       "Tags"->>'GID_4' as "GID_4",
+       "Tags"->>'GID_4_NAME' as "GID_4_NAME",
        TRIM(
                CONCAT_WS(',',
                          NULLIF("Level1", ''),
@@ -70,5 +80,5 @@ FROM "PollingStations" ps
          LEFT JOIN "QuickReports" qr ON qr."PollingStationId" = ps."Id"
          LEFT JOIN "PollingStationInformation" psi ON psi."PollingStationId" = ps."Id"
 WHERE ps."ElectionRoundId" = '9e68d49a-4466-418d-bfad-bc1099db9778'
-GROUP BY "Level1", "Level2", "Level3", "Level4", "Level5", "Address"
+GROUP BY "Level1", "Level2", "Level3", "Level4", "Level5", "Address", "Tags"
 ```

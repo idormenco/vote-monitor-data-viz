@@ -8,7 +8,8 @@
     "build": "vite build && tsc",
     "serve": "vite preview",
     "test": "vitest run",
-    "csv-transform": "tsx src/helpers/raw-data-to-json.ts"
+    "csv:to-json": "tsx helpers/raw-data-to-json.ts",
+    "csv:to-updates": "tsx helpers/generate-update-scripts.ts"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.3",
@@ -33,13 +34,14 @@
     "@visx/clip-path": "^3.12.0",
     "@visx/event": "^3.12.0",
     "@visx/geo": "^3.12.0",
+    "@visx/legend": "^3.12.0",
     "@visx/responsive": "^3.12.0",
     "@visx/scale": "^3.12.0",
     "@visx/tooltip": "^3.12.0",
+    "@visx/vendor": "^3.12.0",
     "@visx/zoom": "^3.12.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "d3-scale-chromatic": "^3.1.0",
     "jotai": "^2.12.2",
     "lodash-es": "^4.17.21",
     "lucide-react": "^0.476.0",
@@ -59,7 +61,6 @@
     "@tanstack/react-router-devtools": "^1.114.3",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/react": "^16.2.0",
-    "@types/d3-scale-chromatic": "^3.1.0",
     "@types/node": "^22.14.0",
     "@types/papaparse": "^5.3.15",
     "@types/react": "^19.0.8",

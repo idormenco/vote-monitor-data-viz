@@ -9,6 +9,7 @@ import ElectionDescription from "./Tabs/ElectionDescription";
 import FormSubmissions from "./Tabs/FormSubmissions";
 import PollingStationsCoverage from "./Tabs/PollingStationsCoverage";
 import ReportedIncidents from "./Tabs/ReportedIncidents";
+import FlaggedAnswers from "./Tabs/FlaggedAnswers";
 
 export default function Page() {
   const { id } = Route.useParams();
@@ -64,7 +65,10 @@ export default function Page() {
           <TabsTrigger value="description">Description</TabsTrigger>
           <TabsTrigger value="ps-covered">Observers in the field</TabsTrigger>
           <TabsTrigger value="forms-submitted">Forms submitted</TabsTrigger>
-          <TabsTrigger value="incidents">Reported incidents</TabsTrigger>
+          <TabsTrigger value="flagged-answers">Flag answers</TabsTrigger>
+          <TabsTrigger value="quick-reports">
+            Quick reports submitted
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="description">
           <ElectionDescription election={electionStatistics} />
@@ -72,19 +76,26 @@ export default function Page() {
         <TabsContent value="ps-covered">
           <PollingStationsCoverage
             mapFeatures={country}
-            totals={totals}
             gidData={electionStatistics.gid1Data}
           />
         </TabsContent>
 
         <TabsContent value="forms-submitted">
           <FormSubmissions
+            mapFeatures={country}
             totals={totals}
             gidData={electionStatistics.gid1Data}
           />
         </TabsContent>
-        <TabsContent value="incidents">
+        <TabsContent value="flagged-answers">
+          <FlaggedAnswers
+            mapFeatures={country}
+            gidData={electionStatistics.gid1Data}
+          />
+        </TabsContent>
+        <TabsContent value="quick-reports">
           <ReportedIncidents
+            mapFeatures={country}
             totals={totals}
             gidData={electionStatistics.gid1Data}
           />

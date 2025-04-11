@@ -77,7 +77,6 @@ function WorldMap({ onCountryClick }: WorldMapProps) {
         features={filteredLand}
         data={electionsByCountry}
         xAccessor={(d: CountryElections) => d.countryCode}
-        yAccessor={(d: CountryElections) => d.monitoredElections.length}
         featureXAccessor={(p: FeatureShapeProperties) => p.a3}
         getFeatureFillColor={getFeatureFillColor}
         tooltipAccessor={(d: CountryElections) =>

@@ -6,7 +6,7 @@ import { useMapColors } from "@/hooks/use-map-colors";
 import { localPoint } from "@visx/event";
 import { Tooltip, useTooltip } from "@visx/tooltip";
 import { Zoom } from "@visx/zoom";
-import { useCallback, useState } from "react";
+import { useCallback, useState, type ReactNode } from "react";
 import { ZoomControls } from "./ZoomControls";
 
 export interface ChartProps {
@@ -32,13 +32,13 @@ export interface Margin {
 }
 
 export interface GeoMercatorProps<T> {
+  children?: ReactNode | undefined;
   features: FeatureShape[];
   name: string;
   data: T[];
   margin?: Margin;
   xAccessor: (data: T) => string;
   featureXAccessor: (properties: FeatureShapeProperties) => string;
-  yAccessor: (data: T) => number;
   getFeatureFillColor: (data: T | undefined, isHovered: boolean) => string;
   tooltipAccessor?: (data: T) => string;
   onFeatureClick?: (data: T) => void;
@@ -49,7 +49,6 @@ const defaultMargin = { top: 0, right: 0, bottom: 0, left: 0 };
 export const GeoMercator = <T,>({
   features,
   data,
-  yAccessor,
   xAccessor,
   featureXAccessor,
   name,
@@ -57,6 +56,7 @@ export const GeoMercator = <T,>({
   tooltipAccessor,
   onFeatureClick,
   getFeatureFillColor,
+  children,
 }: GeoMercatorProps<T>) => {
   return (
     <ParentSize>
@@ -68,12 +68,12 @@ export const GeoMercator = <T,>({
           width={parent.width || 900}
           height={parent.height || 600}
           margin={margin}
-          yAccessor={yAccessor}
           xAccessor={xAccessor}
           featureXAccessor={featureXAccessor}
           tooltipAccessor={tooltipAccessor}
           getFeatureFillColor={getFeatureFillColor}
           onFeatureClick={onFeatureClick}
+          children={children}
         />
       )}
     </ParentSize>
@@ -84,7 +84,6 @@ const Chart = <T,>({
   features,
   width,
   height,
-  yAccessor,
   xAccessor,
   featureXAccessor,
   data,
@@ -92,6 +91,7 @@ const Chart = <T,>({
   onFeatureClick,
   name,
   getFeatureFillColor,
+  children,
 }: InnerGeoMercator<T>) => {
   const {
     hideTooltip,
@@ -101,11 +101,11 @@ const Chart = <T,>({
     tooltipTop = 0,
   } = useTooltip<T>();
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
+  const { worldMapColors, tooltipStyles } = useMapColors();
 
   const centerX = width / 2;
   const centerY = height * 0.7;
-  const scale = Math.min(width, height) * 0.5;
-  const { worldMapColors, tooltipStyles } = useMapColors();
+  const scale = Math.min(width, height);
 
   const handleTooltip = useCallback(
     (
@@ -231,7 +231,7 @@ const Chart = <T,>({
         <div style={{ position: "relative" }}>
           {renderMap(zoom)}
           <ZoomControls zoom={zoom} />
-          {tooltipData && (
+          {tooltipData && tooltipAccessor && (
             <Tooltip
               top={tooltipTop}
               left={tooltipLeft}
@@ -241,11 +241,11 @@ const Chart = <T,>({
                 transform: "translate(-50%)",
               }}
             >
-              {tooltipAccessor
-                ? tooltipAccessor(tooltipData)
-                : `${xAccessor(tooltipData)}: ${yAccessor(tooltipData)}`}
+              {tooltipAccessor(tooltipData)}
             </Tooltip>
           )}
+
+          {children}
         </div>
       )}
     </Zoom>
