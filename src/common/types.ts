@@ -15,6 +15,7 @@ export interface ElectionDetailsModel {
   startDate: string;
   countryCode: string;
   countryShortName: string;
+  mapCode: string;
   gid0Code: string;
   gid0Data: GIDData[];
   gid1Data: GIDData[];
@@ -39,11 +40,34 @@ export interface GIDData {
   visitedPollingStations: number;
 }
 
+export interface FeatureShapeProperties {
+  // GADM properties
+  GID_3: string;
+  GID_0: string;
+  COUNTRY: string;
+  GID_1: string;
+  NAME_1: string;
+  NL_NAME_1: string;
+  GID_2: string;
+  NAME_2: string;
+  NL_NAME_2: string;
+  NAME_3: string;
+  VARNAME_3: string;
+  NL_NAME_3: string;
+  TYPE_3: string;
+  ENGTYPE_3: string;
+  CC_3: string;
+  HASC_3: string;
+  // world json properties
+  name: string;
+  a3: string;
+}
+
 export interface FeatureShape {
   type: "Feature";
   id: string;
   geometry: { coordinates: [number, number][][]; type: "Polygon" };
-  properties: { name: string; a3: string };
+  properties: FeatureShapeProperties;
 }
 
 export interface FeatureCollection {

@@ -1,4 +1,4 @@
-import type { ElectionModel } from "@/common/types";
+import type { ElectionModel, FeatureShapeProperties } from "@/common/types";
 import { GeoMercator } from "@/components/MercatorMap";
 import { HIDDEN_REGIONS } from "@/config/site";
 import { useMapColors } from "@/hooks/use-map-colors";
@@ -78,6 +78,7 @@ function WorldMap({ onCountryClick }: WorldMapProps) {
         data={electionsByCountry}
         xAccessor={(d: CountryElections) => d.countryCode}
         yAccessor={(d: CountryElections) => d.monitoredElections.length}
+        featureXAccessor={(p: FeatureShapeProperties) => p.a3}
         getFeatureFillColor={getFeatureFillColor}
         tooltipAccessor={(d: CountryElections) =>
           `In ${d.countryShortName} we monitored ${d.monitoredElections.length} elections`

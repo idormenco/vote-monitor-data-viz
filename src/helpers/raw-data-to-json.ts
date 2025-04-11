@@ -10,7 +10,6 @@ import { existsSync } from "node:fs";
 import elections from "public/elections-data/all.json";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
-import { error } from "node:console";
 
 interface RawElectionsDataRow {
   Level1: string;
@@ -111,6 +110,12 @@ async function transformData() {
       describe: "Gid 0 code",
       type: "string",
       demandOption: true,
+    })
+    .option("m", {
+      alias: "map",
+      describe: "Map id",
+      type: "string",
+      demandOption: true,
     }).argv;
 
   const end = Date.now();
@@ -178,6 +183,7 @@ async function transformData() {
     englishTitle: election.englishTitle,
     startDate: election.startDate,
     title: election.title,
+    mapCode: options.m,
     gid0Code: options.c,
     gid0Data,
     gid1Data,

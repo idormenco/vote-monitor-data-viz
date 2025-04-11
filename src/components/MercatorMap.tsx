@@ -1,7 +1,7 @@
 import { Graticule, Mercator } from "@visx/geo";
 import { ParentSize } from "@visx/responsive";
 
-import type { FeatureShape } from "@/common/types";
+import type { FeatureShape, FeatureShapeProperties } from "@/common/types";
 import { useMapColors } from "@/hooks/use-map-colors";
 import { localPoint } from "@visx/event";
 import { Tooltip, useTooltip } from "@visx/tooltip";
@@ -37,6 +37,7 @@ export interface GeoMercatorProps<T> {
   data: T[];
   margin?: Margin;
   xAccessor: (data: T) => string;
+  featureXAccessor: (properties: FeatureShapeProperties) => string;
   yAccessor: (data: T) => number;
   getFeatureFillColor: (data: T | undefined, isHovered: boolean) => string;
   tooltipAccessor?: (data: T) => string;
@@ -50,6 +51,7 @@ export const GeoMercator = <T,>({
   data,
   yAccessor,
   xAccessor,
+  featureXAccessor,
   name,
   margin = defaultMargin,
   tooltipAccessor,
@@ -68,6 +70,7 @@ export const GeoMercator = <T,>({
           margin={margin}
           yAccessor={yAccessor}
           xAccessor={xAccessor}
+          featureXAccessor={featureXAccessor}
           tooltipAccessor={tooltipAccessor}
           getFeatureFillColor={getFeatureFillColor}
           onFeatureClick={onFeatureClick}
@@ -83,6 +86,7 @@ const Chart = <T,>({
   height,
   yAccessor,
   xAccessor,
+  featureXAccessor,
   data,
   tooltipAccessor,
   onFeatureClick,
@@ -167,10 +171,11 @@ const Chart = <T,>({
             />
             {mercator.features.map(({ feature, path }, i) => {
               const featureData = data.find((d) => {
-                return xAccessor(d) === feature.properties.a3;
+                return xAccessor(d) === featureXAccessor(feature.properties);
               });
 
-              const isHovered = hoveredCountry === feature.properties.a3;
+              const isHovered =
+                hoveredCountry === featureXAccessor(feature.properties);
 
               return (
                 <path
@@ -185,15 +190,15 @@ const Chart = <T,>({
                   }}
                   onMouseMove={(e) => {
                     handleTooltip(e, featureData);
-                    setHoveredCountry(feature.properties.a3);
+                    setHoveredCountry(featureXAccessor(feature.properties));
                   }}
                   onTouchStart={(e) => {
                     handleTooltip(e, featureData);
-                    setHoveredCountry(feature.properties.a3);
+                    setHoveredCountry(featureXAccessor(feature.properties));
                   }}
                   onTouchMove={(e) => {
                     handleTooltip(e, featureData);
-                    setHoveredCountry(feature.properties.a3);
+                    setHoveredCountry(featureXAccessor(feature.properties));
                   }}
                   onClick={() => featureData && onFeatureClick?.(featureData)}
                 />
@@ -209,10 +214,10 @@ const Chart = <T,>({
     <Zoom<SVGSVGElement>
       width={width}
       height={height}
-      scaleXMin={100}
-      scaleXMax={1000}
-      scaleYMin={100}
-      scaleYMax={1000}
+      scaleXMin={10}
+      scaleXMax={10000}
+      scaleYMin={10}
+      scaleYMax={10000}
       initialTransformMatrix={{
         scaleX: scale,
         scaleY: scale,

@@ -1,20 +1,24 @@
+import type { GIDData } from "@/common/types";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { electionByIdQueryOptions } from "@/query-options/elections-query-options";
 import { mapByCodeQueryOptions } from "@/query-options/maps-query-options";
 import { Route } from "@/routes/elections/$id";
-import { useSuspenseQueries } from "@tanstack/react-query";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { useMemo } from "react";
 import ElectionDescription from "./Tabs/ElectionDescription";
 import FormSubmissions from "./Tabs/FormSubmissions";
 import PollingStationsCoverage from "./Tabs/PollingStationsCoverage";
 import ReportedIncidents from "./Tabs/ReportedIncidents";
-import { useMemo } from "react";
-import type { GIDData } from "@/common/types";
 
 export default function Page() {
   const { id } = Route.useParams();
-  const [{ data: electionStatistics }, { data: country }] = useSuspenseQueries({
-    queries: [electionByIdQueryOptions(id), mapByCodeQueryOptions(id)],
-  });
+  const { data: electionStatistics } = useSuspenseQuery(
+    electionByIdQueryOptions(id)
+  );
+
+  const { data: country } = useSuspenseQuery(
+    mapByCodeQueryOptions(electionStatistics.mapCode)
+  );
 
   const totals = useMemo(() => {
     return electionStatistics.gid0Data
