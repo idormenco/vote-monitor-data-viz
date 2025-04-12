@@ -5,8 +5,9 @@ import type { FeatureShape, FeatureShapeProperties } from "@/common/types";
 import { useMapColors } from "@/hooks/use-map-colors";
 import { localPoint } from "@visx/event";
 import { Tooltip, useTooltip } from "@visx/tooltip";
+import { geoMercator, geoPath } from "@visx/vendor/d3-geo";
 import { Zoom } from "@visx/zoom";
-import { useCallback, useState, type ReactNode } from "react";
+import { useCallback, useMemo, useState, type ReactNode } from "react";
 import { ZoomControls } from "./ZoomControls";
 
 export interface ChartProps {
@@ -31,7 +32,7 @@ export interface Margin {
   left: number;
 }
 
-export interface GeoMercatorProps<T> {
+export interface MercatorMapProps<T> {
   children?: ReactNode | undefined;
   features: FeatureShape[];
   name: string;
@@ -44,9 +45,9 @@ export interface GeoMercatorProps<T> {
   onFeatureClick?: (data: T) => void;
 }
 
-type InnerGeoMercator<T> = InnerChartProps & GeoMercatorProps<T>;
+type InnerMercatorMap<T> = InnerChartProps & MercatorMapProps<T>;
 const defaultMargin = { top: 0, right: 0, bottom: 0, left: 0 };
-export const GeoMercator = <T,>({
+export const MercatorMap = <T,>({
   features,
   data,
   xAccessor,
@@ -57,7 +58,7 @@ export const GeoMercator = <T,>({
   onFeatureClick,
   getFeatureFillColor,
   children,
-}: GeoMercatorProps<T>) => {
+}: MercatorMapProps<T>) => {
   return (
     <ParentSize>
       {(parent) => (
@@ -92,7 +93,7 @@ const Chart = <T,>({
   name,
   getFeatureFillColor,
   children,
-}: InnerGeoMercator<T>) => {
+}: InnerMercatorMap<T>) => {
   const {
     hideTooltip,
     showTooltip,
@@ -102,10 +103,6 @@ const Chart = <T,>({
   } = useTooltip<T>();
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
   const { worldMapColors, tooltipStyles } = useMapColors();
-
-  const centerX = width / 2;
-  const centerY = height * 0.7;
-  const scale = Math.min(width, height);
 
   const handleTooltip = useCallback(
     (
@@ -125,6 +122,39 @@ const Chart = <T,>({
     [showTooltip]
   );
 
+  const initialTransform = useMemo(() => {
+    const projection = geoMercator().scale(1).translate([0, 0]);
+    const path = geoPath().projection(projection);
+    const bounds = path.bounds({
+      type: "FeatureCollection",
+      features: features.filter(
+        (feature) =>
+          data.find((d) => {
+            return xAccessor(d) === featureXAccessor(feature.properties);
+          }) !== null
+      ),
+    });
+    // Compute scale and translate to fit the bounds into the viewport
+    const dx = bounds[1][0] - bounds[0][0];
+    const dy = bounds[1][1] - bounds[0][1];
+    const x = (bounds[0][0] + bounds[1][0]) / 2;
+    const y = (bounds[0][1] + bounds[1][1]) / 2;
+
+    // Optional padding around the features
+
+    // Compute scale (same for x and y to preserve aspect ratio)
+    const scale = Math.min((width - 2) / dx, (height - 2) / dy) * 1.5;
+
+    return {
+      scaleX: scale,
+      scaleY: scale,
+      translateX: width / 2 - scale * x,
+      translateY: height / 2 - scale * y,
+      skewX: 0,
+      skewY: 0,
+    };
+  }, [width, height, features, data, featureXAccessor, xAccessor]);
+
   const renderMap = (zoom: {
     containerRef: React.RefObject<SVGSVGElement>;
     isDragging: boolean;
@@ -142,7 +172,7 @@ const Chart = <T,>({
       name={name}
       width={width}
       height={height}
-      ref={zoom?.containerRef}
+      ref={zoom.containerRef}
       style={{
         touchAction: "none",
         // cursor: zoom.isDragging ? "grabbing" : "grab",
@@ -157,10 +187,10 @@ const Chart = <T,>({
       />
       <Mercator<FeatureShape>
         data={features}
-        scale={zoom?.transformMatrix.scaleX || scale}
+        scale={zoom.transformMatrix.scaleX}
         translate={[
-          zoom?.transformMatrix.translateX || centerX,
-          zoom?.transformMatrix.translateY || centerY,
+          zoom.transformMatrix.translateX,
+          zoom.transformMatrix.translateY,
         ]}
       >
         {(mercator) => (
@@ -214,18 +244,7 @@ const Chart = <T,>({
     <Zoom<SVGSVGElement>
       width={width}
       height={height}
-      scaleXMin={10}
-      scaleXMax={10000}
-      scaleYMin={10}
-      scaleYMax={10000}
-      initialTransformMatrix={{
-        scaleX: scale,
-        scaleY: scale,
-        translateX: centerX,
-        translateY: centerY,
-        skewX: 0,
-        skewY: 0,
-      }}
+      initialTransformMatrix={initialTransform}
     >
       {(zoom) => (
         <div style={{ position: "relative" }}>

@@ -1,5 +1,5 @@
 import type { ElectionModel, FeatureShapeProperties } from "@/common/types";
-import { GeoMercator } from "@/components/MercatorMap";
+import { MercatorMap } from "@/components/MercatorMap";
 import { HIDDEN_REGIONS } from "@/config/site";
 import { useMapColors } from "@/hooks/use-map-colors";
 import { electionsQueryOptions } from "@/query-options/elections-query-options";
@@ -73,7 +73,7 @@ function WorldMap({ onCountryClick }: WorldMapProps) {
         Elections we had monitored accros the world
       </h2>
 
-      <GeoMercator
+      <MercatorMap
         features={filteredLand}
         data={electionsByCountry}
         xAccessor={(d: CountryElections) => d.countryCode}

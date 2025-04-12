@@ -4,7 +4,7 @@ import type {
   GIDData,
 } from "@/common/types";
 
-import { GeoMercator } from "@/components/MercatorMap";
+import { MercatorMap } from "@/components/MercatorMap";
 import { percentage, twoDecimalFormat } from "@/lib/utils";
 import { LegendItem, LegendLabel, LegendLinear } from "@visx/legend";
 import { scaleLinear } from "@visx/scale";
@@ -49,7 +49,7 @@ function FormSubmissions({
 
   return (
     <div className="w-full h-[calc(80vh)]">
-      <GeoMercator
+      <MercatorMap
         features={mapFeatures.features}
         data={gidData}
         xAccessor={(d: GIDData) => d.gid}
@@ -89,7 +89,7 @@ function FormSubmissions({
             }
           </LegendLinear>
         </div>
-      </GeoMercator>
+      </MercatorMap>
     </div>
   );
 }
