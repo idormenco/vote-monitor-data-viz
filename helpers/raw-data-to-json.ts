@@ -161,10 +161,6 @@ async function transformData() {
     (row) => row.GID_4_NAME
   );
 
-  if (!results.data.some((row) => row.GID_0 === options.c)) {
-    throw new Error(`GID0 ${options.c} not found in data set!`);
-  }
-
   const electionData: ElectionDetailsModel = {
     countryCode: election.countryCode,
     countryShortName: election.countryShortName,
