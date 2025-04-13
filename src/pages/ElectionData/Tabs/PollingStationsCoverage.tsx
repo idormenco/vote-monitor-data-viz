@@ -46,7 +46,7 @@ function PollingStationsCoverage({
       range,
       clamp: true,
     });
-  }, [gidData]);
+  }, [gidData, getPollingStationsCoverage]);
 
   function getFeatureFillColor(data: GIDData | undefined, _: boolean): string {
     return scale(getPollingStationsCoverage(data));
