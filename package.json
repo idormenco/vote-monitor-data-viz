@@ -9,7 +9,8 @@
     "serve": "vite preview",
     "test": "vitest run",
     "csv:to-json": "tsx helpers/raw-data-to-json.ts",
-    "csv:to-updates": "tsx helpers/generate-update-scripts.ts"
+    "csv:to-updates": "tsx helpers/generate-update-scripts.ts",
+    "csv:cleanup": "tsx helpers/cleanup-csv.ts"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.3",
@@ -72,6 +73,8 @@
     "@types/topojson-client": "^3.1.4",
     "@types/yargs": "^17.0.33",
     "@vitejs/plugin-react": "^4.3.4",
+    "csv-parse": "^5.6.0",
+    "csv-stringify": "^6.5.2",
     "dotenv-cli": "^8.0.0",
     "jsdom": "^26.0.0",
     "papaparse": "^5.5.2",

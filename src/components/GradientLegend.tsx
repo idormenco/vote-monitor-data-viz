@@ -23,7 +23,7 @@ const GradientLegend = ({
 
   const xScale = useMemo(
     () => scaleLinear().range([0, width]).domain([0, max]),
-    [width]
+    [width, max]
   );
 
   return (
