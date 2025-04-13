@@ -27,15 +27,6 @@
     "shortDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis gravida velit. Duis varius orci nec urna tempus, sit amet fermentum metus facilisis. Curabitur euismod"
   },
   {
-    "id": "2024-12-08-rou",
-    "title": "Alegeri Prezidențiale Runda 2",
-    "englishTitle": "Presidential Election Round 2",
-    "startDate": "2024-12-08",
-    "countryCode": "ROU",
-    "countryShortName": "Romania",
-    "shortDescription": "Curabitur vitae sapien vitae ligula elementum convallis non at erat. Integer non nulla eget sapien feugiat tincidunt"
-  },
-  {
     "id": "2024-12-01-rou",
     "title": "Alegeri Parlamentare",
     "englishTitle": "Parliamentary elections",
