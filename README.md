@@ -36,16 +36,6 @@ select "Level1",
        "Tags"->>'GID_3_NAME' as "GID_3_NAME",
        "Tags"->>'GID_4' as "GID_4",
        "Tags"->>'GID_4_NAME' as "GID_4_NAME",
-       TRIM(
-               CONCAT_WS(',',
-                         NULLIF("Level1", ''),
-                         NULLIF("Level2", ''),
-                         NULLIF("Level3", ''),
-                         NULLIF("Level4", ''),
-                         NULLIF("Level5", ''),
-                         NULLIF("Address", '')
-               )
-       )                                                       AS "FullAddress",
        COALESCE(COUNT(DISTINCT ps."Id"), 0)                    AS "NumberOfPollingStations",
        COALESCE(COUNT(DISTINCT qr."Id"), 0)                    AS "QuickReportsSubmitted",
        COALESCE(COUNT(DISTINCT fs."Id"), 0)                    AS "FormSubmitted",

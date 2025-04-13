@@ -10,7 +10,7 @@
     "test": "vitest run",
     "csv:to-json": "tsx helpers/raw-data-to-json.ts",
     "csv:to-updates": "tsx helpers/generate-update-scripts.ts",
-    "csv:cleanup": "tsx helpers/cleanup-csv.ts"
+    "csv:trim": "tsx helpers/cleanup-csv.ts"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.3",
