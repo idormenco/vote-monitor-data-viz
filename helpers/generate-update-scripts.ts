@@ -1,6 +1,7 @@
 import { promises as fs } from "fs";
 import Papa from "papaparse";
 
+import { isEmpty, uniqBy } from "lodash-es";
 import { existsSync } from "node:fs";
 import yargs from "yargs";
 import { hideBin } from "yargs/helpers";
@@ -72,7 +73,11 @@ async function transformData() {
     throw new Error("❌ Error parsing CSV file!");
   }
 
-  const updates: string[] = results.data.map((row) => {
+  const updates: string[] = uniqBy(results.data, (r) =>
+    [r.Level1, r.Level2, r.Level3, r.Level4, r.Level5]
+      .filter((l) => !isEmpty(l))
+      .join("-")
+  ).map((row) => {
     const gidTags = {
       GID_0: row.GID_0,
       GID_0_NAME: row.GID_0_NAME,
@@ -88,27 +93,34 @@ async function transformData() {
 
     const serializedTags = JSON.stringify(gidTags);
 
-    return `UPDATE public."PollingStations"
+    return (
+      `UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '${serializedTags}'
             WHERE "Level1" = '${
               row.Level1 ? row.Level1.replace(/'/g, "''") : ""
-            }'
-            AND "Level2" = '${
-              row.Level2 ? row.Level2.replace(/'/g, "''") : ""
-            }' 
-            AND "Level3" = '${
-              row.Level3 ? row.Level3.replace(/'/g, "''") : ""
-            }' 
-            AND "Level4" = '${
-              row.Level4 ? row.Level4.replace(/'/g, "''") : ""
-            }' 
-            AND "Level5" = '${
-              row.Level5 ? row.Level5.replace(/'/g, "''") : ""
-            }' 
-            AND "Address" = '${
-              row.Address ? row.Address.replace(/'/g, "''") : ""
-            }';
-            `;
+            }'` +
+      (isEmpty(row.Level2)
+        ? ""
+        : `AND "Level2" = '${
+            row.Level2 ? row.Level2.replace(/'/g, "''") : ""
+          }'`) +
+      (isEmpty(row.Level3)
+        ? ""
+        : `AND "Level3" = '${
+            row.Level3 ? row.Level3.replace(/'/g, "''") : ""
+          }'`) +
+      (isEmpty(row.Level4)
+        ? ""
+        : `AND "Level4" = '${
+            row.Level4 ? row.Level4.replace(/'/g, "''") : ""
+          }'`) +
+      (isEmpty(row.Level5)
+        ? ""
+        : `AND "Level5" = '${
+            row.Level5 ? row.Level5.replace(/'/g, "''") : ""
+          }'`) +
+      `;`
+    );
   });
 
   await fs.writeFile(outputPath, updates.join("\n"), "utf8");
