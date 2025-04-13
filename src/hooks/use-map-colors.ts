@@ -8,6 +8,8 @@ export interface WorldMapConfig {
   waterColor: string;
   coveredCountryColor: string;
   coveredCountryHooverColor: string;
+  labelTextColor: string;
+  labelTextSecondaryColor: string; // 👈 Optional for less-emphasized text
 }
 
 const lightThemeColors: WorldMapConfig = {
@@ -16,6 +18,8 @@ const lightThemeColors: WorldMapConfig = {
   waterColor: "#E0EAF5", // Light blue-gray for a more natural water tone
   coveredCountryColor: "#F7A600", // A warmer golden yellow for better contrast
   coveredCountryHooverColor: "#FFD54F", // A slightly brighter hover effect
+  labelTextColor: "#333333", // dark gray for contrast on light
+  labelTextSecondaryColor: "#666666", // for subtler labels if needed
 };
 
 const darkThemeColors: WorldMapConfig = {
@@ -24,6 +28,8 @@ const darkThemeColors: WorldMapConfig = {
   waterColor: "rgba(60, 60, 60, 1)",
   coveredCountryColor: "rgba(244, 227, 178, 1)",
   coveredCountryHooverColor: "rgba(232, 201, 121, 1)",
+  labelTextColor: "#F1F1F1", // soft white for dark backgrounds
+  labelTextSecondaryColor: "#BBBBBB", // less prominent labels
 };
 
 export interface MapColorsConfig {

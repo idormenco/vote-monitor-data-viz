@@ -1,44 +1,44 @@
 import type { DataLevel, FeatureCollection, GIDData } from "@/common/types";
-
 import GradientLegend from "@/components/GradientLegend";
+
 import { MercatorMap } from "@/components/MercatorMap";
 import { useFeatureXAccessor } from "@/hooks/use-feature-x-accesor";
 import { percentage, twoDecimalFormat } from "@/lib/utils";
 import { scaleLinear } from "@visx/scale";
 import { useCallback, useMemo } from "react";
 
-export interface FormSubmissionsProps {
+export interface QuickReportsProps {
   level: DataLevel;
   mapFeatures: FeatureCollection;
   gidData: GIDData[];
   totals: GIDData;
 }
-function FormSubmissions({
+function QuickReports({
   level,
+  mapFeatures,
   totals,
   gidData,
-  mapFeatures,
-}: FormSubmissionsProps) {
+}: QuickReportsProps) {
   const { featureXAccessor } = useFeatureXAccessor(level);
 
-  const getFormSubmissionsPercentage = useCallback(
+  const getQuickReportsPercentage = useCallback(
     (data: GIDData | undefined) => {
-      return totals.formSubmitted > 0
-        ? percentage(data?.formSubmitted || 0, totals.formSubmitted)
+      return data && totals.quickReportsSubmitted > 0
+        ? percentage(data.quickReportsSubmitted, totals.quickReportsSubmitted)
         : 0;
     },
     [totals]
   );
 
   const scale = useMemo(() => {
-    const values = gidData.map(getFormSubmissionsPercentage);
+    const values = gidData.map(getQuickReportsPercentage);
     const min = Math.min(...values);
     const max = Math.max(...values);
-    const range = ["#4b0091", "#ffb01d"];
+    const range = ["#4b0091", "#f63a48"];
 
     if (min === max) {
       return scaleLinear({
-        domain: [0, max],
+        domain: [0, 100],
         range,
         clamp: true,
       });
@@ -52,7 +52,7 @@ function FormSubmissions({
   }, [gidData]);
 
   function getFeatureFillColor(data: GIDData | undefined, _: boolean): string {
-    return scale(getFormSubmissionsPercentage(data));
+    return scale(getQuickReportsPercentage(data));
   }
 
   return (
@@ -64,11 +64,9 @@ function FormSubmissions({
         featureXAccessor={featureXAccessor}
         getFeatureFillColor={getFeatureFillColor}
         tooltipAccessor={(d: GIDData) =>
-          `${d.gidName} - ${twoDecimalFormat(
-            getFormSubmissionsPercentage(d)
-          )} %`
+          `${d.gidName} - ${twoDecimalFormat(getQuickReportsPercentage(d))} %`
         }
-        name="form submissions"
+        name="quick reports"
       >
         <div className="absolute bottom-8 left-12 flex flex-col gap-y-1">
           <GradientLegend
@@ -81,4 +79,4 @@ function FormSubmissions({
   );
 }
 
-export default FormSubmissions;
+export default QuickReports;

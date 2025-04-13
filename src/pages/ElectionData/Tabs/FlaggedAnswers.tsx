@@ -1,20 +1,20 @@
-import type {
-  FeatureCollection,
-  FeatureShapeProperties,
-  GIDData,
-} from "@/common/types";
+import type { DataLevel, FeatureCollection, GIDData } from "@/common/types";
+import GradientLegend from "@/components/GradientLegend";
 
 import { MercatorMap } from "@/components/MercatorMap";
+import { useFeatureXAccessor } from "@/hooks/use-feature-x-accesor";
 import { percentage, twoDecimalFormat } from "@/lib/utils";
-import { LegendItem, LegendLabel, LegendLinear } from "@visx/legend";
 import { scaleLinear } from "@visx/scale";
 import { useCallback, useMemo } from "react";
 
 export interface FlaggedAnswersProps {
+  level: DataLevel;
   mapFeatures: FeatureCollection;
   gidData: GIDData[];
 }
-function FlaggedAnswers({ mapFeatures, gidData }: FlaggedAnswersProps) {
+function FlaggedAnswers({ level, mapFeatures, gidData }: FlaggedAnswersProps) {
+  const { featureXAccessor } = useFeatureXAccessor(level);
+
   const getFlaggedAnwersToAnswersPercentage = useCallback(
     (data: GIDData | undefined) => {
       return data && data.numberOfQuestionsAnswered > 0
@@ -31,19 +31,20 @@ function FlaggedAnswers({ mapFeatures, gidData }: FlaggedAnswersProps) {
     const values = gidData.map(getFlaggedAnwersToAnswersPercentage);
     const min = Math.min(...values);
     const max = Math.max(...values);
+    const range = ["#4b0091", "#f63a48"];
 
     if (min === max) {
       // return base color
       return scaleLinear({
-        domain: [min, max],
-        range: ["#4b0091", "#4b0091"],
+        domain: [0, max],
+        range,
         clamp: true,
       });
     }
 
     return scaleLinear({
       domain: [min, max],
-      range: ["#4b0091", "#f63a48"],
+      range,
       clamp: true,
     });
   }, [gidData]);
@@ -58,7 +59,7 @@ function FlaggedAnswers({ mapFeatures, gidData }: FlaggedAnswersProps) {
         features={mapFeatures.features}
         data={gidData}
         xAccessor={(d: GIDData) => d.gid}
-        featureXAccessor={(p: FeatureShapeProperties) => p.GID_1}
+        featureXAccessor={featureXAccessor}
         getFeatureFillColor={getFeatureFillColor}
         tooltipAccessor={(d: GIDData) =>
           `${d.gidName} - ${twoDecimalFormat(
@@ -68,31 +69,10 @@ function FlaggedAnswers({ mapFeatures, gidData }: FlaggedAnswersProps) {
         name="flagged answers"
       >
         <div className="absolute bottom-8 left-12 flex flex-col gap-y-1">
-          <LegendLinear
+          <GradientLegend
             scale={scale}
-            labelFormat={(d, i) =>
-              i % 2 === 0 ? `${twoDecimalFormat(d)} %` : ""
-            }
-            className="absolute bottom-1"
-          >
-            {(labels) =>
-              labels.map((label, i) => (
-                <LegendItem key={`legend-quantile-${i}`}>
-                  <svg width={15} height={15} style={{ margin: "2px 0" }}>
-                    <circle
-                      fill={label.value}
-                      r={15 / 2}
-                      cx={15 / 2}
-                      cy={15 / 2}
-                    />
-                  </svg>
-                  <LegendLabel align="left" margin="0 4px">
-                    {label.text}
-                  </LegendLabel>
-                </LegendItem>
-              ))
-            }
-          </LegendLinear>
+            legendTextFormatter={(v) => `${twoDecimalFormat(v)} %`}
+          />
         </div>
       </MercatorMap>
     </div>

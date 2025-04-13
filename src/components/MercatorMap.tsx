@@ -143,7 +143,7 @@ const Chart = <T,>({
     // Optional padding around the features
 
     // Compute scale (same for x and y to preserve aspect ratio)
-    const scale = Math.min((width - 2) / dx, (height - 2) / dy) * 1.5;
+    const scale = Math.min((width - 2) / dx, (height - 2) / dy);
 
     return {
       scaleX: scale,

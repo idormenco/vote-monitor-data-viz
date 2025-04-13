@@ -98,22 +98,10 @@ async function transformData() {
   const start = Date.now();
 
   const options = await yargs(hideBin(process.argv))
-    .usage("Usage: -i <election-id>")
+    .usage("Usage: -i <electionId>")
     .option("i", {
       alias: "electionId",
       describe: "Election id",
-      type: "string",
-      demandOption: true,
-    })
-    .option("c", {
-      alias: "gid0Code",
-      describe: "Gid 0 code",
-      type: "string",
-      demandOption: true,
-    })
-    .option("m", {
-      alias: "map",
-      describe: "Map id",
       type: "string",
       demandOption: true,
     }).argv;
@@ -183,8 +171,8 @@ async function transformData() {
     englishTitle: election.englishTitle,
     startDate: election.startDate,
     title: election.title,
-    mapCode: options.m,
-    gid0Code: options.c,
+    gidLevelLabels: {},
+    gidLevelMaps: {},
     gid0Data,
     gid1Data,
     gid2Data,

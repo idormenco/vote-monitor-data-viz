@@ -15,13 +15,28 @@ export interface ElectionDetailsModel {
   startDate: string;
   countryCode: string;
   countryShortName: string;
-  mapCode: string;
-  gid0Code: string;
   gid0Data: GIDData[];
   gid1Data: GIDData[];
   gid2Data: GIDData[];
   gid3Data: GIDData[];
   gid4Data: GIDData[];
+  // Add mapping for GID level labels
+  gidLevelLabels: {
+    gid0?: string;
+    gid1?: string;
+    gid2?: string;
+    gid3?: string;
+    gid4?: string;
+  };
+
+  // Add mapping for GID level maps
+  gidLevelMaps: {
+    gid0?: string;
+    gid1?: string;
+    gid2?: string;
+    gid3?: string;
+    gid4?: string;
+  };
 }
 
 export interface GIDData {
@@ -43,6 +58,7 @@ export interface GIDData {
 export interface FeatureShapeProperties {
   // GADM properties
   GID_3: string;
+  GID_4: string;
   GID_0: string;
   COUNTRY: string;
   GID_1: string;
@@ -74,3 +90,5 @@ export interface FeatureCollection {
   type: "FeatureCollection";
   features: FeatureShape[];
 }
+
+export type DataLevel = "level0" | "level1" | "level2" | "level3" | "level4";

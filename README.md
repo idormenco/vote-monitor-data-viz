@@ -82,3 +82,11 @@ FROM "PollingStations" ps
 WHERE ps."ElectionRoundId" = '9e68d49a-4466-418d-bfad-bc1099db9778'
 GROUP BY "Level1", "Level2", "Level3", "Level4", "Level5", "Address", "Tags"
 ```
+
+## Generating json election data
+
+`pnpm run csv:to-json -i <election-id>`
+
+## Generating sql updates
+
+`pnpm run csv:to-updates -i <election-id>`
