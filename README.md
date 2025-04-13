@@ -73,6 +73,10 @@ WHERE ps."ElectionRoundId" = '9e68d49a-4466-418d-bfad-bc1099db9778'
 GROUP BY "Level1", "Level2", "Level3", "Level4", "Level5", "Address", "Tags"
 ```
 
+## Trim whitespaces and remove empty lines
+
+`pnpm run csv:trim -i <election-id>`
+
 ## Generating json election data
 
 `pnpm run csv:to-json -i <election-id>`

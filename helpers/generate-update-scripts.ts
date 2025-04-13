@@ -89,7 +89,7 @@ async function transformData() {
     const serializedTags = JSON.stringify(gidTags);
 
     return `UPDATE public."PollingStations"
-            SET "Tags" = '${serializedTags}'
+            SET "Tags" = "Tags" || '${serializedTags}'
             WHERE "Level1" = '${row.Level1 ? row.Level1 : ""}'
             AND "Level2" = '${row.Level2 ? row.Level2 : ""}' 
             AND "Level3" = '${row.Level3 ? row.Level3 : ""}' 
