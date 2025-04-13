@@ -90,13 +90,25 @@ async function transformData() {
 
     return `UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '${serializedTags}'
-            WHERE "Level1" = '${row.Level1 ? row.Level1 : ""}'
-            AND "Level2" = '${row.Level2 ? row.Level2 : ""}' 
-            AND "Level3" = '${row.Level3 ? row.Level3 : ""}' 
-            AND "Level4" = '${row.Level4 ? row.Level4 : ""}' 
-            AND "Level5" = '${row.Level5 ? row.Level5 : ""}' 
-            AND "Address" = '${row.Address ? row.Address : ""}'
-            ;`;
+            WHERE "Level1" = '${
+              row.Level1 ? row.Level1.replace(/'/g, "''") : ""
+            }'
+            AND "Level2" = '${
+              row.Level2 ? row.Level2.replace(/'/g, "''") : ""
+            }' 
+            AND "Level3" = '${
+              row.Level3 ? row.Level3.replace(/'/g, "''") : ""
+            }' 
+            AND "Level4" = '${
+              row.Level4 ? row.Level4.replace(/'/g, "''") : ""
+            }' 
+            AND "Level5" = '${
+              row.Level5 ? row.Level5.replace(/'/g, "''") : ""
+            }' 
+            AND "Address" = '${
+              row.Address ? row.Address.replace(/'/g, "''") : ""
+            }';
+            `;
   });
 
   await fs.writeFile(outputPath, updates.join("\n"), "utf8");
