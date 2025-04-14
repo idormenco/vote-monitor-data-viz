@@ -351,9 +351,6 @@ UPDATE public."PollingStations"
             WHERE "Level1" = 'България'AND "Level2" = 'БЛАГОЕВГРАД'AND "Level3" = 'ПЕТРИЧ'AND "Level4" = 'С.ЯВОРНИЦА';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"BGR","GID_0_NAME":"Bulgaria","GID_1":"BGR.1_1","GID_1_NAME":"Благоевград","GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'България'AND "Level2" = 'БЛАГОЕВГРАД'AND "Level3" = 'ПЕТРИЧ'AND "Level4" = 'С.ЯКОВО';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"BGR","GID_0_NAME":"Bulgaria","GID_1":"BGR.1_1","GID_1_NAME":"Благоевград","GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
             WHERE "Level1" = 'България'AND "Level2" = 'БЛАГОЕВГРАД'AND "Level3" = 'РАЗЛОГ'AND "Level4" = 'ГР.РАЗЛОГ';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"BGR","GID_0_NAME":"Bulgaria","GID_1":"BGR.1_1","GID_1_NAME":"Благоевград","GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
@@ -1231,9 +1228,6 @@ UPDATE public."PollingStations"
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"BGR","GID_0_NAME":"Bulgaria","GID_1":"BGR.2_1","GID_1_NAME":"Бургас","GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
             WHERE "Level1" = 'България'AND "Level2" = 'БУРГАС'AND "Level3" = 'СРЕДЕЦ'AND "Level4" = 'С.СВЕТЛИНА';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"BGR","GID_0_NAME":"Bulgaria","GID_1":"BGR.2_1","GID_1_NAME":"Бургас","GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'България'AND "Level2" = 'БУРГАС'AND "Level3" = 'СРЕДЕЦ'AND "Level4" = 'С.СИНЬО КАМЕНЕ';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"BGR","GID_0_NAME":"Bulgaria","GID_1":"BGR.2_1","GID_1_NAME":"Бургас","GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
             WHERE "Level1" = 'България'AND "Level2" = 'БУРГАС'AND "Level3" = 'СРЕДЕЦ'AND "Level4" = 'С.СЛИВОВО';
@@ -6055,9 +6049,6 @@ UPDATE public."PollingStations"
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"BGR","GID_0_NAME":"Bulgaria","GID_1":"BGR.11_1","GID_1_NAME":"Пазарджик","GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
             WHERE "Level1" = 'България'AND "Level2" = 'ПАЗАРДЖИК'AND "Level3" = 'ВЕЛИНГРАД'AND "Level4" = 'С.БИРКОВА';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"BGR","GID_0_NAME":"Bulgaria","GID_1":"BGR.11_1","GID_1_NAME":"Пазарджик","GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'България'AND "Level2" = 'ПАЗАРДЖИК'AND "Level3" = 'ВЕЛИНГРАД'AND "Level4" = 'С.БОЗЬОВА';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"BGR","GID_0_NAME":"Bulgaria","GID_1":"BGR.11_1","GID_1_NAME":"Пазарджик","GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
             WHERE "Level1" = 'България'AND "Level2" = 'ПАЗАРДЖИК'AND "Level3" = 'ВЕЛИНГРАД'AND "Level4" = 'С.БУТРЕВА';
@@ -11619,9 +11610,6 @@ UPDATE public."PollingStations"
             WHERE "Level1" = 'България'AND "Level2" = 'ХАСКОВО'AND "Level3" = 'ТОПОЛОВГРАД'AND "Level4" = 'С.ХЛЯБОВО';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"BGR","GID_0_NAME":"Bulgaria","GID_1":"BGR.6_1","GID_1_NAME":"Хасково","GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'България'AND "Level2" = 'ХАСКОВО'AND "Level3" = 'ТОПОЛОВГРАД'AND "Level4" = 'С.ЧУКАРОВО';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"BGR","GID_0_NAME":"Bulgaria","GID_1":"BGR.6_1","GID_1_NAME":"Хасково","GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
             WHERE "Level1" = 'България'AND "Level2" = 'ХАСКОВО'AND "Level3" = 'ХАРМАНЛИ'AND "Level4" = 'ГР.ХАРМАНЛИ';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"BGR","GID_0_NAME":"Bulgaria","GID_1":"BGR.6_1","GID_1_NAME":"Хасково","GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
@@ -12558,181 +12546,172 @@ UPDATE public."PollingStations"
             WHERE "Level1" = 'България'AND "Level2" = 'ЯМБОЛ'AND "Level3" = 'ЯМБОЛ'AND "Level4" = 'ГР.ЯМБОЛ';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"AUS","GID_0_NAME":"Australia","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Австралия';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Австралия';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"AUT","GID_0_NAME":"Austria","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Австрия';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"AZE","GID_0_NAME":"Azerbaijan","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Азербайджан';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Австрия';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"ALB","GID_0_NAME":"Albania","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Албания';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Албания';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"DZA","GID_0_NAME":"Algeria","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Алжир';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Алжир';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"ARM","GID_0_NAME":"Armenia","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Армения';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Армения';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"BLR","GID_0_NAME":"Belarus","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Беларус';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Беларус';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"BEL","GID_0_NAME":"Belgium","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Белгия';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Белгия';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"BIH","GID_0_NAME":"Bosnia and Herzegovina","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Босна и Херцеговина';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Босна и Херцеговина';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"DEU","GID_0_NAME":"Germany","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Германия';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Германия ФР';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"GEO","GID_0_NAME":"Georgia","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Грузия';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Грузия';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"GRC","GID_0_NAME":"Greece","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Гърция';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Гърция';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"DNK","GID_0_NAME":"Denmark","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Дания';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Дания';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"EGY","GID_0_NAME":"Egypt","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Египет';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"ISR","GID_0_NAME":"Israel","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Израел';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Египет';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"IRL","GID_0_NAME":"Ireland","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Ирландия';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Ирландия';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"ISL","GID_0_NAME":"Iceland","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Исландия';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Исландия';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"ESP","GID_0_NAME":"Spain","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Испания';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Испания';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"ITA","GID_0_NAME":"Italy","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Италия';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Италия';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"JOR","GID_0_NAME":"Jordan","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Йордания';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Йордания';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"CAN","GID_0_NAME":"Canada","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Канада';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Канада';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"QAT","GID_0_NAME":"Qatar","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Катар';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Катар';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"CYP","GID_0_NAME":"Cyprus","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Кипър';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Кипър';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"CHN","GID_0_NAME":"China","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Китай';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Китай';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"XKX","GID_0_NAME":"Kosovo","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Косово';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Косово';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"KWT","GID_0_NAME":"Kuwait","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Кувейт';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"LBN","GID_0_NAME":"Lebanon","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Ливан';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Кувейт';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"LUX","GID_0_NAME":"Luxembourg","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Люксембург';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Люксембург';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"MLT","GID_0_NAME":"Malta","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Малта';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Малта';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"MAR","GID_0_NAME":"Morocco","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Мароко';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Мароко';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"MDA","GID_0_NAME":"Moldova","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Молдова';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Молдова';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"NLD","GID_0_NAME":"Netherlands","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Нидерландия';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Нидерландия';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"NZL","GID_0_NAME":"New Zealand","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Нова Зеландия';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Нова Зеландия';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"NOR","GID_0_NAME":"Norway","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Норвегия';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Норвегия';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"ARE","GID_0_NAME":"United Arab Emirates","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'ОАЕ';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'ОАЕ';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"GBR","GID_0_NAME":"United Kingdom","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Обединено кралство Великобритания и Северна Ирландия';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Обединено кралство Великобритания и Северна Ирландия';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"POL","GID_0_NAME":"Poland","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Полша';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Полша';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"PRT","GID_0_NAME":"Portugal","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Португалия';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Португалия';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"KOR","GID_0_NAME":"South Korea","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Република Корея';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"ROU","GID_0_NAME":"Romania","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Румъния';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"RUS","GID_0_NAME":"Russia","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Русия';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"SAU","GID_0_NAME":"Saudi Arabia","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Саудитска Арабия';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"USA","GID_0_NAME":"United States","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'САЩ';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"MKD","GID_0_NAME":"North Macedonia","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Северна Македония';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"SGP","GID_0_NAME":"Singapore","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Сингапур';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"SVK","GID_0_NAME":"Slovakia","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Словакия';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"SVN","GID_0_NAME":"Slovenia","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Словения';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"SRB","GID_0_NAME":"Serbia","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Сърбия';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"TUN","GID_0_NAME":"Tunisia","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Тунис';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"TUR","GID_0_NAME":"Turkey","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Турция';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"HUN","GID_0_NAME":"Hungary","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Унгария';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"FIN","GID_0_NAME":"Finland","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Финландия';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"FRA","GID_0_NAME":"France","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Франция';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"HRV","GID_0_NAME":"Croatia","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Хърватия';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"MNE","GID_0_NAME":"Montenegro","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Черна гора';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"CZE","GID_0_NAME":"Czechia","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Чехия';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"CHE","GID_0_NAME":"Switzerland","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Швейцария';
-UPDATE public."PollingStations"
-            SET "Tags" = "Tags" || '{"GID_0":"SWE","GID_0_NAME":"Sweden","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Швеция';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Република Корея';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"ZAF","GID_0_NAME":"South Africa","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'ЮАР';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Република Южна Африка';
+UPDATE public."PollingStations"
+            SET "Tags" = "Tags" || '{"GID_0":"ROU","GID_0_NAME":"Romania","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Румъния';
+UPDATE public."PollingStations"
+            SET "Tags" = "Tags" || '{"GID_0":"RUS","GID_0_NAME":"Russia","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Русия';
+UPDATE public."PollingStations"
+            SET "Tags" = "Tags" || '{"GID_0":"SAU","GID_0_NAME":"Saudi Arabia","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Саудитска Арабия';
+UPDATE public."PollingStations"
+            SET "Tags" = "Tags" || '{"GID_0":"USA","GID_0_NAME":"United States","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'САЩ';
+UPDATE public."PollingStations"
+            SET "Tags" = "Tags" || '{"GID_0":"MKD","GID_0_NAME":"North Macedonia","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Северна Македония (РСМ)';
+UPDATE public."PollingStations"
+            SET "Tags" = "Tags" || '{"GID_0":"SGP","GID_0_NAME":"Singapore","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Сингапур';
+UPDATE public."PollingStations"
+            SET "Tags" = "Tags" || '{"GID_0":"SVK","GID_0_NAME":"Slovakia","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Словакия';
+UPDATE public."PollingStations"
+            SET "Tags" = "Tags" || '{"GID_0":"SVN","GID_0_NAME":"Slovenia","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Словения';
+UPDATE public."PollingStations"
+            SET "Tags" = "Tags" || '{"GID_0":"SRB","GID_0_NAME":"Serbia","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Сърбия';
+UPDATE public."PollingStations"
+            SET "Tags" = "Tags" || '{"GID_0":"TUN","GID_0_NAME":"Tunisia","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Тунис';
+UPDATE public."PollingStations"
+            SET "Tags" = "Tags" || '{"GID_0":"TUR","GID_0_NAME":"Turkey","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Турция';
+UPDATE public."PollingStations"
+            SET "Tags" = "Tags" || '{"GID_0":"HUN","GID_0_NAME":"Hungary","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Унгария';
+UPDATE public."PollingStations"
+            SET "Tags" = "Tags" || '{"GID_0":"FIN","GID_0_NAME":"Finland","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Финландия';
+UPDATE public."PollingStations"
+            SET "Tags" = "Tags" || '{"GID_0":"FRA","GID_0_NAME":"France","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Франция';
+UPDATE public."PollingStations"
+            SET "Tags" = "Tags" || '{"GID_0":"HRV","GID_0_NAME":"Croatia","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Хърватия';
+UPDATE public."PollingStations"
+            SET "Tags" = "Tags" || '{"GID_0":"MNE","GID_0_NAME":"Montenegro","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Черна гора';
+UPDATE public."PollingStations"
+            SET "Tags" = "Tags" || '{"GID_0":"CZE","GID_0_NAME":"Czechia (Czech Republic)","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Чехия';
+UPDATE public."PollingStations"
+            SET "Tags" = "Tags" || '{"GID_0":"CHE","GID_0_NAME":"Switzerland","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Швейцария';
+UPDATE public."PollingStations"
+            SET "Tags" = "Tags" || '{"GID_0":"SWE","GID_0_NAME":"Sweden","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Швеция';
 UPDATE public."PollingStations"
             SET "Tags" = "Tags" || '{"GID_0":"JPN","GID_0_NAME":"Japan","GID_1":null,"GID_1_NAME":null,"GID_2":null,"GID_2_NAME":null,"GID_3":null,"GID_3_NAME":null,"GID_4":null,"GID_4_NAME":null}'
-            WHERE "Level1" = 'Диаспора'AND "Level2" = 'Япония';
+            WHERE "Level1" = 'Българска Диаспора'AND "Level2" = 'Япония';

@@ -166,7 +166,7 @@ export default function Page() {
       <Tabs defaultValue="description">
         <TabsList>
           <TabsTrigger value="description">Description</TabsTrigger>
-          <TabsTrigger value="ps-covered">Observers in the field</TabsTrigger>
+          <TabsTrigger value="ps-covered">Polling station coverage</TabsTrigger>
           <TabsTrigger value="forms-submitted">Forms submitted</TabsTrigger>
           <TabsTrigger value="flagged-answers">Flag answers</TabsTrigger>
           <TabsTrigger value="quick-reports">

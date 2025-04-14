@@ -36,7 +36,7 @@ function FlaggedAnswers({ level, mapFeatures, gidData }: FlaggedAnswersProps) {
     if (min === max) {
       // return base color
       return scaleLinear({
-        domain: [0, max],
+        domain: [0, 100],
         range,
         clamp: true,
       });
